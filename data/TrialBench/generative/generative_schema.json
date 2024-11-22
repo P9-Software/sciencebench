@@ -1,0 +1,3789 @@
+[
+  {
+    "name": "trl_inv",
+    "original_name": "trl_inv",
+    "logical_name": "trl_inv",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Investigator",
+        "original_name": "inv",
+        "logical_name": "inv",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "column_label_lookup",
+    "original_name": "column_label_lookup",
+    "logical_name": "column_label_lookup",
+    "columns": [
+      {
+        "name": "Table_Name",
+        "original_name": "Table_Name",
+        "logical_name": "Table_Name",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Column_Name",
+        "original_name": "Column_Name",
+        "logical_name": "Column_Name",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Column_Label",
+        "original_name": "Column_Label",
+        "logical_name": "Column_Label",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      }
+    ]
+  },
+  {
+    "name": "plnd_oth_intrv_in_trl",
+    "original_name": "plnd_oth_intrv_in_trl",
+    "logical_name": "plnd_oth_intrv_in_trl",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Intervention Sequence Number",
+        "original_name": "intrv_seq_num",
+        "logical_name": "intrv_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Other Information",
+        "original_name": "oth_info",
+        "logical_name": "oth_info",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_strata_domain",
+    "original_name": "plnd_strata_domain",
+    "logical_name": "plnd_strata_domain",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Strata Domain",
+        "original_name": "trl_strata_domain",
+        "logical_name": "trl_strata_domain",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Domain Description",
+        "original_name": "trl_strata_domain_desc",
+        "logical_name": "trl_strata_domain_desc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Domain Label",
+        "original_name": "trl_strata_domain_lb",
+        "logical_name": "trl_strata_domain_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Domain Short Label",
+        "original_name": "trl_strata_domain_short_lb",
+        "logical_name": "trl_strata_domain_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Domain Type",
+        "original_name": "trl_strata_domain_type",
+        "logical_name": "trl_strata_domain_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      }
+    ]
+  },
+  {
+    "name": "trl_def_in_trl_contr",
+    "original_name": "trl_def_in_trl_contr",
+    "logical_name": "trl_def_in_trl_contr",
+    "columns": [
+      {
+        "name": "Any Blinding Of Subject IDs",
+        "original_name": "any_blinding_of_subj_ids",
+        "logical_name": "any_blinding_of_subj_ids",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Blinding",
+        "original_name": "blinding",
+        "logical_name": "blinding",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Enable Transfer",
+        "original_name": "enable_transfer",
+        "logical_name": "enable_transfer",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Last Data Transfer",
+        "original_name": "lst_data_transfer",
+        "logical_name": "lst_data_transfer",
+        "original_datatype": "datetime",
+        "logical_datatype": "datetime"
+      },
+      {
+        "name": "Last Data Transfer Status",
+        "original_name": "lst_data_transfer_status",
+        "logical_name": "lst_data_transfer_status",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Transfer Day",
+        "original_name": "transfer_day",
+        "logical_name": "transfer_day",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Transfer Frequency",
+        "original_name": "transfer_freq",
+        "logical_name": "transfer_freq",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Transfer Time Zone",
+        "original_name": "transfer_tm_zone",
+        "logical_name": "transfer_tm_zone",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Container",
+        "original_name": "trl_contr",
+        "logical_name": "trl_contr",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Cut Off Date",
+        "original_name": "trl_cut_off_dt",
+        "logical_name": "trl_cut_off_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Use Latest Version",
+        "original_name": "use_latest_ver",
+        "logical_name": "use_latest_ver",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_sub_grp_domain",
+    "original_name": "plnd_trl_sub_grp_domain",
+    "logical_name": "plnd_trl_sub_grp_domain",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Sub Group Domain",
+        "original_name": "trl_sub_grp_domain",
+        "logical_name": "trl_sub_grp_domain",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Domain Description",
+        "original_name": "trl_sub_grp_domain_desc",
+        "logical_name": "trl_sub_grp_domain_desc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Domain Label",
+        "original_name": "trl_sub_grp_domain_lb",
+        "logical_name": "trl_sub_grp_domain_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Domain Short Label",
+        "original_name": "trl_sub_grp_domain_short_lb",
+        "logical_name": "trl_sub_grp_domain_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Domain Type",
+        "original_name": "trl_sub_grp_domain_type",
+        "logical_name": "trl_sub_grp_domain_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_vis",
+    "original_name": "plnd_trl_vis",
+    "logical_name": "plnd_trl_vis",
+    "columns": [
+      {
+        "name": "Analysis Visit Post Time Window",
+        "original_name": "analysis_vis_post_tm_win",
+        "logical_name": "analysis_vis_post_tm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Analysis Visit Pre Time Window",
+        "original_name": "analysis_vis_pre_tm_win",
+        "logical_name": "analysis_vis_pre_tm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "CDMS Trial ID",
+        "original_name": "cdms_trl_id",
+        "logical_name": "cdms_trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDMS Visit ID",
+        "original_name": "cdms_vis_id",
+        "logical_name": "cdms_vis_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDMS Visit ID Number",
+        "original_name": "cdms_vis_id_num",
+        "logical_name": "cdms_vis_id_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Consecutive Visit Group",
+        "original_name": "consecutive_vis_grp",
+        "logical_name": "consecutive_vis_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Display Visit in Flowchart",
+        "original_name": "display_vis_in_flowch",
+        "logical_name": "display_vis_in_flowch",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Epoch Sequence Number",
+        "original_name": "gen_epoch_seq_num",
+        "logical_name": "gen_epoch_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Optional",
+        "original_name": "optional",
+        "logical_name": "optional",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Study Day",
+        "original_name": "plnd_study_day",
+        "logical_name": "plnd_study_day",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Trial Duration Time",
+        "original_name": "plnd_trl_dur_tm",
+        "logical_name": "plnd_trl_dur_tm",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Trial Duration Time Unit",
+        "original_name": "plnd_trl_dur_tm_unit",
+        "logical_name": "plnd_trl_dur_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Trial Time",
+        "original_name": "plnd_trl_tm",
+        "logical_name": "plnd_trl_tm",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Trial Time Unit",
+        "original_name": "plnd_trl_tm_unit",
+        "logical_name": "plnd_trl_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Visit",
+        "original_name": "plnd_vis",
+        "logical_name": "plnd_vis",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Visit Post Time Window",
+        "original_name": "plnd_vis_post_tm_win",
+        "logical_name": "plnd_vis_post_tm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Visit Pre Time Window",
+        "original_name": "plnd_vis_pre_tm_win",
+        "logical_name": "plnd_vis_pre_tm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Visit Time Window Unit",
+        "original_name": "plnd_vis_tm_win_unit",
+        "logical_name": "plnd_vis_tm_win_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Strata List",
+        "original_name": "strata_list",
+        "logical_name": "strata_list",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Strata Specific",
+        "original_name": "strata_spec",
+        "logical_name": "strata_spec",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Symmetric Time Window",
+        "original_name": "sym_tm_win",
+        "logical_name": "sym_tm_win",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Sub Group List",
+        "original_name": "trl_sub_grp_list",
+        "logical_name": "trl_sub_grp_list",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Specific",
+        "original_name": "trl_sub_grp_spec",
+        "logical_name": "trl_sub_grp_spec",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Time Reference",
+        "original_name": "trl_tm_ref",
+        "logical_name": "trl_tm_ref",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Treatment Allocation",
+        "original_name": "trt_alloc",
+        "logical_name": "trt_alloc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Description",
+        "original_name": "vis_desc",
+        "logical_name": "vis_desc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit End Rule",
+        "original_name": "vis_end_rl",
+        "logical_name": "vis_end_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Group",
+        "original_name": "vis_grp",
+        "logical_name": "vis_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "VISIT ID",
+        "original_name": "vis_id",
+        "logical_name": "vis_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Visit Label",
+        "original_name": "vis_lb",
+        "logical_name": "vis_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Note",
+        "original_name": "vis_note",
+        "logical_name": "vis_note",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Short Label",
+        "original_name": "vis_short_lb",
+        "logical_name": "vis_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Sub-Label",
+        "original_name": "vis_slb",
+        "logical_name": "vis_slb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Start Rule",
+        "original_name": "vis_start_rl",
+        "logical_name": "vis_start_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Type",
+        "original_name": "vis_type",
+        "logical_name": "vis_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Type Alias",
+        "original_name": "vis_type_alias",
+        "logical_name": "vis_type_alias",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_indicat",
+    "original_name": "trl_indicat",
+    "logical_name": "trl_indicat",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Indication",
+        "original_name": "indicat",
+        "logical_name": "indicat",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_endp_to_flowch",
+    "original_name": "trl_endp_to_flowch",
+    "logical_name": "trl_endp_to_flowch",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Endpoint",
+        "original_name": "endp",
+        "logical_name": "endp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_type",
+    "original_name": "trl_type",
+    "logical_name": "trl_type",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Type Of Trial",
+        "original_name": "type_of_trl",
+        "logical_name": "type_of_trl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_branch_arm",
+    "original_name": "plnd_trl_branch_arm",
+    "logical_name": "plnd_trl_branch_arm",
+    "columns": [
+      {
+        "name": "Branch Trial Sub Group",
+        "original_name": "branch_trl_sub_grp",
+        "logical_name": "branch_trl_sub_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Branch Trial Sub Group Domain",
+        "original_name": "branch_trl_sub_grp_domain",
+        "logical_name": "branch_trl_sub_grp_domain",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Branch Arm Sequence Number",
+        "original_name": "gen_branch_arm_seq_num",
+        "logical_name": "gen_branch_arm_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Branch Arm Label",
+        "original_name": "trl_branch_arm_lb",
+        "logical_name": "trl_branch_arm_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Branch Arm Short Label",
+        "original_name": "trl_branch_arm_short_lb",
+        "logical_name": "trl_branch_arm_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_sub_grp",
+    "original_name": "plnd_trl_sub_grp",
+    "logical_name": "plnd_trl_sub_grp",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Sub Group",
+        "original_name": "trl_sub_grp",
+        "logical_name": "trl_sub_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Abbreviation",
+        "original_name": "trl_sub_grp_abbrev",
+        "logical_name": "trl_sub_grp_abbrev",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Domain",
+        "original_name": "trl_sub_grp_domain",
+        "logical_name": "trl_sub_grp_domain",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Label",
+        "original_name": "trl_sub_grp_lb",
+        "logical_name": "trl_sub_grp_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Sub Group Short Label",
+        "original_name": "trl_sub_grp_short_lb",
+        "logical_name": "trl_sub_grp_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_prof_dos",
+    "original_name": "plnd_prof_dos",
+    "logical_name": "plnd_prof_dos",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Compound Sequence Number",
+        "original_name": "comp_seq_num",
+        "logical_name": "comp_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Profile Name",
+        "original_name": "prof_nm",
+        "logical_name": "prof_nm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Time Point",
+        "original_name": "tm_pnt",
+        "logical_name": "tm_pnt",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_epoch",
+    "original_name": "plnd_trl_epoch",
+    "logical_name": "plnd_trl_epoch",
+    "columns": [
+      {
+        "name": "AE Lag",
+        "original_name": "ae_lag",
+        "logical_name": "ae_lag",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "AE Lag Time Unit",
+        "original_name": "ae_lag_tm_unit",
+        "logical_name": "ae_lag_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Description",
+        "original_name": "description",
+        "logical_name": "description",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "End Description",
+        "original_name": "end_desc",
+        "logical_name": "end_desc",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Epoch Sequence Number",
+        "original_name": "gen_epoch_seq_num",
+        "logical_name": "gen_epoch_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lag 1 For Event Type",
+        "original_name": "lag_1_for_evnt_type",
+        "logical_name": "lag_1_for_evnt_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 1 Time Unit",
+        "original_name": "lag_1_tm_unit",
+        "logical_name": "lag_1_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 1 Value",
+        "original_name": "lag_1_val",
+        "logical_name": "lag_1_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lag 2 For Event Type",
+        "original_name": "lag_2_for_evnt_type",
+        "logical_name": "lag_2_for_evnt_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 2 Time Unit",
+        "original_name": "lag_2_tm_unit",
+        "logical_name": "lag_2_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 2 Value",
+        "original_name": "lag_2_val",
+        "logical_name": "lag_2_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lag 3 For Event Type",
+        "original_name": "lag_3_for_evnt_type",
+        "logical_name": "lag_3_for_evnt_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 3 Time Unit",
+        "original_name": "lag_3_tm_unit",
+        "logical_name": "lag_3_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lag 3 Value",
+        "original_name": "lag_3_val",
+        "logical_name": "lag_3_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Start Description",
+        "original_name": "start_desc",
+        "logical_name": "start_desc",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Duration Time Unit",
+        "original_name": "trl_dur_tm_unit",
+        "logical_name": "trl_dur_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Epoch Duration",
+        "original_name": "trl_epoch_dur",
+        "logical_name": "trl_epoch_dur",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Epoch Label",
+        "original_name": "trl_epoch_lb",
+        "logical_name": "trl_epoch_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Epoch Short Label",
+        "original_name": "trl_epoch_short_lb",
+        "logical_name": "trl_epoch_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_find_method",
+    "original_name": "plnd_find_method",
+    "logical_name": "plnd_find_method",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Clinical Significance Range Type",
+        "original_name": "clin_signif_range_type",
+        "logical_name": "clin_signif_range_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lab",
+        "original_name": "lab",
+        "logical_name": "lab",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Normal Range Type",
+        "original_name": "normal_range_type",
+        "logical_name": "normal_range_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Range Start Date",
+        "original_name": "range_start_dt",
+        "logical_name": "range_start_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Range Stop Date",
+        "original_name": "range_stop_dt",
+        "logical_name": "range_stop_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_find_normal_range",
+    "original_name": "plnd_find_normal_range",
+    "logical_name": "plnd_find_normal_range",
+    "columns": [
+      {
+        "name": "Age Unit",
+        "original_name": "age_unit",
+        "logical_name": "age_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Country",
+        "original_name": "country",
+        "logical_name": "country",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lab",
+        "original_name": "lab",
+        "logical_name": "lab",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Age",
+        "original_name": "lower_age",
+        "logical_name": "lower_age",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lower Range",
+        "original_name": "lower_range",
+        "logical_name": "lower_range",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Range Start Date",
+        "original_name": "range_start_dt",
+        "logical_name": "range_start_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Range Unit",
+        "original_name": "range_unit",
+        "logical_name": "range_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Sex",
+        "original_name": "sex",
+        "logical_name": "sex",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Age",
+        "original_name": "upper_age",
+        "logical_name": "upper_age",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Range",
+        "original_name": "upper_range",
+        "logical_name": "upper_range",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_arm",
+    "original_name": "plnd_trl_arm",
+    "logical_name": "plnd_trl_arm",
+    "columns": [
+      {
+        "name": "CDMS Treatment Pattern",
+        "original_name": "cdms_trt_pattern",
+        "logical_name": "cdms_trt_pattern",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Arm Sequence Number",
+        "original_name": "gen_arm_seq_num",
+        "logical_name": "gen_arm_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Number Of Subjects",
+        "original_name": "plnd_num_of_subjects",
+        "logical_name": "plnd_num_of_subjects",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Arm Label",
+        "original_name": "trl_arm_lb",
+        "logical_name": "trl_arm_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Arm Short Label",
+        "original_name": "trl_arm_short_lb",
+        "logical_name": "trl_arm_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_def",
+    "original_name": "trl_def",
+    "logical_name": "trl_def",
+    "columns": [
+      {
+        "name": "Age At Baseline Rule",
+        "original_name": "age_at_baseline_rl",
+        "logical_name": "age_at_baseline_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Age Group Rule",
+        "original_name": "age_grp_rl",
+        "logical_name": "age_grp_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Blinding Level",
+        "original_name": "blinding_level",
+        "logical_name": "blinding_level",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Cdp Trial",
+        "original_name": "cdp_trl",
+        "logical_name": "cdp_trl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ClinicalTrials.gov ID",
+        "original_name": "clinical_trials_gov",
+        "logical_name": "clinical_trials_gov",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Coding Whodrug Version",
+        "original_name": "coding_whodrug_ver",
+        "logical_name": "coding_whodrug_ver",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Double Dummy Blinding",
+        "original_name": "double_dummy_blinding",
+        "logical_name": "double_dummy_blinding",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Eudract Number",
+        "original_name": "eudract_num",
+        "logical_name": "eudract_num",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Exposure Rule",
+        "original_name": "expo_rl",
+        "logical_name": "expo_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Trial Design",
+        "original_name": "gen_trl_design",
+        "logical_name": "gen_trl_design",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Trial Design Class",
+        "original_name": "gen_trl_design_class",
+        "logical_name": "gen_trl_design_class",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ICH Category",
+        "original_name": "ich_cat",
+        "logical_name": "ich_cat",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Last Metadata Transfer",
+        "original_name": "lst_metadata_transfer",
+        "logical_name": "lst_metadata_transfer",
+        "original_datatype": "datetime",
+        "logical_datatype": "datetime"
+      },
+      {
+        "name": "Last Metadata Transfer Status",
+        "original_name": "lst_metadata_trns_status",
+        "logical_name": "lst_metadata_trns_status",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Mappings Locked",
+        "original_name": "map_locked",
+        "logical_name": "map_locked",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Mappings Locked Date",
+        "original_name": "map_locked_dt",
+        "logical_name": "map_locked_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Meddra Version",
+        "original_name": "meddra_ver",
+        "logical_name": "meddra_ver",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "NN SDTM Version",
+        "original_name": "nn_sdtm_ver",
+        "logical_name": "nn_sdtm_ver",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Open Label",
+        "original_name": "open_lb",
+        "logical_name": "open_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Primary Objective Text",
+        "original_name": "prim_objective_text",
+        "logical_name": "prim_objective_text",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Protocol ID",
+        "original_name": "protocol_id",
+        "logical_name": "protocol_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Request Metadata Transfer",
+        "original_name": "request_metadata_transfer",
+        "logical_name": "request_metadata_transfer",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Secondary Objective Text",
+        "original_name": "secondary_objective_text",
+        "logical_name": "secondary_objective_text",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition Purpose",
+        "original_name": "trl_def_purpose",
+        "logical_name": "trl_def_purpose",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition Status",
+        "original_name": "trl_def_status",
+        "logical_name": "trl_def_status",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition Status Date",
+        "original_name": "trl_def_status_dt",
+        "logical_name": "trl_def_status_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition Type",
+        "original_name": "trl_def_type",
+        "logical_name": "trl_def_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition Version Type",
+        "original_name": "trl_def_ver_type",
+        "logical_name": "trl_def_ver_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Group",
+        "original_name": "trl_grp",
+        "logical_name": "trl_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Phase",
+        "original_name": "trl_phase",
+        "logical_name": "trl_phase",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Title",
+        "original_name": "trl_title",
+        "logical_name": "trl_title",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Withdrawn Rule",
+        "original_name": "withdrawn_rl",
+        "logical_name": "withdrawn_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      }
+    ]
+  },
+  {
+    "name": "trl_oth_trl_sum_parm",
+    "original_name": "trl_oth_trl_sum_parm",
+    "logical_name": "trl_oth_trl_sum_parm",
+    "columns": [
+      {
+        "name": "Null Flavour",
+        "original_name": "null_flavour",
+        "logical_name": "null_flavour",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Other Trial Summary Parameter",
+        "original_name": "oth_trl_sum_parm",
+        "logical_name": "oth_trl_sum_parm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Other Trial Summary Parameter Specified Value",
+        "original_name": "oth_trl_sum_parm_spec_val",
+        "logical_name": "oth_trl_sum_parm_spec_val",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Other Trial Summary Parameter Value",
+        "original_name": "oth_trl_sum_parm_val",
+        "logical_name": "oth_trl_sum_parm_val",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_catgo_resp_subset",
+    "original_name": "plnd_catgo_resp_subset",
+    "logical_name": "plnd_catgo_resp_subset",
+    "columns": [
+      {
+        "name": "Categoric Response List",
+        "original_name": "catgo_resp_list",
+        "logical_name": "catgo_resp_list",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Categoric Response Value Code",
+        "original_name": "catgo_resp_val_cd",
+        "logical_name": "catgo_resp_val_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_arm_in_cdms",
+    "original_name": "plnd_trl_arm_in_cdms",
+    "logical_name": "plnd_trl_arm_in_cdms",
+    "columns": [
+      {
+        "name": "CDMS Treatment Pattern",
+        "original_name": "cdms_trt_pattern",
+        "logical_name": "cdms_trt_pattern",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Arm Sequence Number",
+        "original_name": "gen_arm_seq_num",
+        "logical_name": "gen_arm_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Randomisation Group",
+        "original_name": "random_grp",
+        "logical_name": "random_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "long_texts",
+    "original_name": "long_texts",
+    "logical_name": "long_texts",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Line Num",
+        "original_name": "lin_no",
+        "logical_name": "lin_no",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Text",
+        "original_name": "text",
+        "logical_name": "text",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "X ID",
+        "original_name": "x_id",
+        "logical_name": "x_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_flowch_item_row",
+    "original_name": "plnd_flowch_item_row",
+    "logical_name": "plnd_flowch_item_row",
+    "columns": [
+      {
+        "name": "Planned Finding Group",
+        "original_name": "assm_grp",
+        "logical_name": "assm_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Assessment Note",
+        "original_name": "assm_note",
+        "logical_name": "assm_note",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Finding Sub Group",
+        "original_name": "assm_sub_grp",
+        "logical_name": "assm_sub_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Flowchart Group",
+        "original_name": "flowch_grp",
+        "logical_name": "flowch_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Flowchart Item Type",
+        "original_name": "flowch_item_type",
+        "logical_name": "flowch_item_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Limit Rule",
+        "original_name": "lower_limit_rl",
+        "logical_name": "lower_limit_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Limit Type",
+        "original_name": "lower_limit_type",
+        "logical_name": "lower_limit_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Limit Unit",
+        "original_name": "lower_limit_unit",
+        "logical_name": "lower_limit_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Limit Value",
+        "original_name": "lower_limit_val",
+        "logical_name": "lower_limit_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lower Limit Value Censored",
+        "original_name": "lower_limit_val_censored",
+        "logical_name": "lower_limit_val_censored",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Finding",
+        "original_name": "plnd_loinc",
+        "logical_name": "plnd_loinc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Reference ID",
+        "original_name": "plnd_refid",
+        "logical_name": "plnd_refid",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Primary Assessment",
+        "original_name": "prim_assm",
+        "logical_name": "prim_assm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Scheme Of Observation",
+        "original_name": "scheme_of_obs",
+        "logical_name": "scheme_of_obs",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Sequence Number",
+        "original_name": "seq_num",
+        "logical_name": "seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Unblinding Assesment",
+        "original_name": "ublind_assm",
+        "logical_name": "ublind_assm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Visit Related",
+        "original_name": "vis_relat",
+        "logical_name": "vis_relat",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_flowch_item_coll",
+    "original_name": "plnd_flowch_item_coll",
+    "logical_name": "plnd_flowch_item_coll",
+    "columns": [
+      {
+        "name": "Assessment Type",
+        "original_name": "assm_type",
+        "logical_name": "assm_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Collection Note",
+        "original_name": "coll_note",
+        "logical_name": "coll_note",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Flowchart Item Type",
+        "original_name": "flowch_item_type",
+        "logical_name": "flowch_item_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Mandatory For PP Population",
+        "original_name": "mand_for_pp_pop",
+        "logical_name": "mand_for_pp_pop",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Missing End Date Rule",
+        "original_name": "miss_end_dt_rl",
+        "logical_name": "miss_end_dt_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Missing Finding Date Rule",
+        "original_name": "miss_find_dt_rl",
+        "logical_name": "miss_find_dt_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Missing Finding Time Rule",
+        "original_name": "miss_find_tm_rl",
+        "logical_name": "miss_find_tm_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Missing Finding Value Rule",
+        "original_name": "miss_find_val_rl",
+        "logical_name": "miss_find_val_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Missing Start Date Rule",
+        "original_name": "miss_start_dt_rl",
+        "logical_name": "miss_start_dt_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Post First Drug Date Time Window",
+        "original_name": "post_fdrg_dttm_win",
+        "logical_name": "post_fdrg_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Post Last Drug Date Time Window",
+        "original_name": "post_ldrg_dttm_win",
+        "logical_name": "post_ldrg_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Post Visit Date Time Window",
+        "original_name": "post_vis_dttm_win",
+        "logical_name": "post_vis_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Pre First Drug Date Time Window",
+        "original_name": "pre_fdrg_dttm_win",
+        "logical_name": "pre_fdrg_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Pre Last Drug Date Time Window",
+        "original_name": "pre_ldrg_dttm_win",
+        "logical_name": "pre_ldrg_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Pre Visit Date Time Window",
+        "original_name": "pre_vis_dttm_win",
+        "logical_name": "pre_vis_dttm_win",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Qualify For FAS Population",
+        "original_name": "qualf_for_fas_pop",
+        "logical_name": "qualf_for_fas_pop",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Retest Rule",
+        "original_name": "retst_rl",
+        "logical_name": "retst_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Strata List",
+        "original_name": "strata_list",
+        "logical_name": "strata_list",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Strata Specific",
+        "original_name": "strata_spec",
+        "logical_name": "strata_spec",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Subject Group List",
+        "original_name": "subj_grp_list",
+        "logical_name": "subj_grp_list",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Subject Group Specific",
+        "original_name": "subj_grp_spec",
+        "logical_name": "subj_grp_spec",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Treatment Allocation",
+        "original_name": "trt_alloc",
+        "logical_name": "trt_alloc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "VISIT ID",
+        "original_name": "vis_id",
+        "logical_name": "vis_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Visit Reallocation Rule",
+        "original_name": "vis_realloc_rl",
+        "logical_name": "vis_realloc_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_elem",
+    "original_name": "plnd_trl_elem",
+    "logical_name": "plnd_trl_elem",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Description",
+        "original_name": "description",
+        "logical_name": "description",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Duration",
+        "original_name": "dur",
+        "logical_name": "dur",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Duration Unit",
+        "original_name": "dur_unit",
+        "logical_name": "dur_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "End Description",
+        "original_name": "end_desc",
+        "logical_name": "end_desc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Global Element Group",
+        "original_name": "global_elem_grp",
+        "logical_name": "global_elem_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Start Description",
+        "original_name": "start_desc",
+        "logical_name": "start_desc",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Element Protocol Label",
+        "original_name": "trl_elem_protocol_lb",
+        "logical_name": "trl_elem_protocol_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Element Report Label",
+        "original_name": "trl_elem_report_lb",
+        "logical_name": "trl_elem_report_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Element Short Label",
+        "original_name": "trl_elem_short_lb",
+        "logical_name": "trl_elem_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_surg_in_trl",
+    "original_name": "plnd_surg_in_trl",
+    "logical_name": "plnd_surg_in_trl",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Other Information",
+        "original_name": "oth_info",
+        "logical_name": "oth_info",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Surgery Sequence Number",
+        "original_name": "surg_seq_num",
+        "logical_name": "surg_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_prof_tm_coll",
+    "original_name": "plnd_prof_tm_coll",
+    "logical_name": "plnd_prof_tm_coll",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Profile Name",
+        "original_name": "prof_nm",
+        "logical_name": "prof_nm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Time Point",
+        "original_name": "tm_pnt",
+        "logical_name": "tm_pnt",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_comp_dos_in_elem",
+    "original_name": "plnd_comp_dos_in_elem",
+    "logical_name": "plnd_comp_dos_in_elem",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Compound Sequence Number",
+        "original_name": "comp_seq_num",
+        "logical_name": "comp_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Dose Collection Topic Code",
+        "original_name": "dose_coll_topic_cd",
+        "logical_name": "dose_coll_topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Dose Frequency Unit",
+        "original_name": "dose_freq_unit",
+        "logical_name": "dose_freq_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Dose Unit",
+        "original_name": "dose_unit",
+        "logical_name": "dose_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Fixed Dose",
+        "original_name": "fixed_dose",
+        "logical_name": "fixed_dose",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Fixed Dose Frequency",
+        "original_name": "fixed_dose_freq",
+        "logical_name": "fixed_dose_freq",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Fixed Frequency",
+        "original_name": "fixed_freq",
+        "logical_name": "fixed_freq",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Fixed Relative Single Dose Value",
+        "original_name": "fixed_rel_single_dose_val",
+        "logical_name": "fixed_rel_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Fixed Single Dose Value",
+        "original_name": "fixed_single_dose_val",
+        "logical_name": "fixed_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lower Absolute Single Dose Value",
+        "original_name": "lower_abs_single_dose_val",
+        "logical_name": "lower_abs_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lower Dose Frequency",
+        "original_name": "lower_dose_freq",
+        "logical_name": "lower_dose_freq",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Relative Single Dose Value",
+        "original_name": "lower_rel_single_dose_val",
+        "logical_name": "lower_rel_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Dosing Label",
+        "original_name": "plnd_dos_lb",
+        "logical_name": "plnd_dos_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Planned Infusion Time",
+        "original_name": "plnd_infu_tm",
+        "logical_name": "plnd_infu_tm",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Planned Infusion Time Unit",
+        "original_name": "plnd_infu_tm_unit",
+        "logical_name": "plnd_infu_tm_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Relative Dose",
+        "original_name": "rel_dose",
+        "logical_name": "rel_dose",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Total Absolute Daily Dose",
+        "original_name": "tot_abs_daily_dose",
+        "logical_name": "tot_abs_daily_dose",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Total Relative Daily Dose",
+        "original_name": "tot_rel_daily_dose",
+        "logical_name": "tot_rel_daily_dose",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Absolute Single Dose Value",
+        "original_name": "upper_abs_single_dose_val",
+        "logical_name": "upper_abs_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Dose Frequency",
+        "original_name": "upper_dose_freq",
+        "logical_name": "upper_dose_freq",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Upper Relative Single Dose Value",
+        "original_name": "upper_rel_single_dose_val",
+        "logical_name": "upper_rel_single_dose_val",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_endp",
+    "original_name": "trl_endp",
+    "logical_name": "trl_endp",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Description",
+        "original_name": "description",
+        "logical_name": "description",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Endpoint",
+        "original_name": "endp",
+        "logical_name": "endp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Endpoint Classification",
+        "original_name": "endp_classif",
+        "logical_name": "endp_classif",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Endpoint Group",
+        "original_name": "endp_grp",
+        "logical_name": "endp_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Sequence",
+        "original_name": "seq",
+        "logical_name": "seq",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_trl_dmatrix_cell",
+    "original_name": "plnd_trl_dmatrix_cell",
+    "logical_name": "plnd_trl_dmatrix_cell",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Arm Label",
+        "original_name": "gen_arm_lb",
+        "logical_name": "gen_arm_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Arm Sequence Number",
+        "original_name": "gen_arm_seq_num",
+        "logical_name": "gen_arm_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Branch Arm Label",
+        "original_name": "gen_branch_arm_lb",
+        "logical_name": "gen_branch_arm_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Branch Arm Sequence Number",
+        "original_name": "gen_branch_arm_seq_num",
+        "logical_name": "gen_branch_arm_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Label",
+        "original_name": "gen_elem_lb",
+        "logical_name": "gen_elem_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Element Sequence Number",
+        "original_name": "gen_elem_seq_num",
+        "logical_name": "gen_elem_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Element Sub Type",
+        "original_name": "gen_elem_sub_type",
+        "logical_name": "gen_elem_sub_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Element Type",
+        "original_name": "gen_elem_type",
+        "logical_name": "gen_elem_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Epoch Label",
+        "original_name": "gen_epoch_lb",
+        "logical_name": "gen_epoch_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Epoch Sequence Number",
+        "original_name": "gen_epoch_seq_num",
+        "logical_name": "gen_epoch_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Generic Epoch Sub Type",
+        "original_name": "gen_epoch_sub_type",
+        "logical_name": "gen_epoch_sub_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Epoch Type",
+        "original_name": "gen_epoch_type",
+        "logical_name": "gen_epoch_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Generic Trial Design",
+        "original_name": "gen_trl_design",
+        "logical_name": "gen_trl_design",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Transition Rule",
+        "original_name": "transition_rl",
+        "logical_name": "transition_rl",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_flowch_prof_coll",
+    "original_name": "plnd_flowch_prof_coll",
+    "logical_name": "plnd_flowch_prof_coll",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Profile Name",
+        "original_name": "prof_nm",
+        "logical_name": "prof_nm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Profile Type",
+        "original_name": "prof_type",
+        "logical_name": "prof_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Profile ID",
+        "original_name": "profile_id",
+        "logical_name": "profile_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "VISIT ID",
+        "original_name": "vis_id",
+        "logical_name": "vis_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_comp_in_trl",
+    "original_name": "plnd_comp_in_trl",
+    "logical_name": "plnd_comp_in_trl",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Compound Dispensed In",
+        "original_name": "comp_disp_in",
+        "logical_name": "comp_disp_in",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Compound Sequence Number",
+        "original_name": "comp_seq_num",
+        "logical_name": "comp_seq_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Compound Strength",
+        "original_name": "comp_strength",
+        "logical_name": "comp_strength",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Device",
+        "original_name": "device",
+        "logical_name": "device",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Formulation",
+        "original_name": "formulation",
+        "logical_name": "formulation",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Other Information",
+        "original_name": "oth_info",
+        "logical_name": "oth_info",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Type Of Administration",
+        "original_name": "type_of_adm",
+        "logical_name": "type_of_adm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Type of Treatment",
+        "original_name": "type_of_trt",
+        "logical_name": "type_of_trt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_prof",
+    "original_name": "plnd_prof",
+    "logical_name": "plnd_prof",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Profile Name",
+        "original_name": "prof_nm",
+        "logical_name": "prof_nm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Profile Type",
+        "original_name": "prof_type",
+        "logical_name": "prof_type",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Profile ID",
+        "original_name": "profile_id",
+        "logical_name": "profile_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_pop",
+    "original_name": "trl_pop",
+    "logical_name": "trl_pop",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Clinical Study ID",
+        "original_name": "clinical_study_id",
+        "logical_name": "clinical_study_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Population",
+        "original_name": "pop",
+        "logical_name": "pop",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_strata",
+    "original_name": "plnd_strata",
+    "logical_name": "plnd_strata",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Strata",
+        "original_name": "trl_strata",
+        "logical_name": "trl_strata",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Abbreviation",
+        "original_name": "trl_strata_abbrev",
+        "logical_name": "trl_strata_abbrev",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Domain",
+        "original_name": "trl_strata_domain",
+        "logical_name": "trl_strata_domain",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Label",
+        "original_name": "trl_strata_lb",
+        "logical_name": "trl_strata_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Strata Short Label",
+        "original_name": "trl_strata_short_lb",
+        "logical_name": "trl_strata_short_lb",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_site",
+    "original_name": "trl_site",
+    "logical_name": "trl_site",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Site ID",
+        "original_name": "site_id",
+        "logical_name": "site_id",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Site Number",
+        "original_name": "trl_site_num",
+        "logical_name": "trl_site_num",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_clin_signif_range",
+    "original_name": "plnd_clin_signif_range",
+    "logical_name": "plnd_clin_signif_range",
+    "columns": [
+      {
+        "name": "Age Unit",
+        "original_name": "age_unit",
+        "logical_name": "age_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Country",
+        "original_name": "country",
+        "logical_name": "country",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lab",
+        "original_name": "lab",
+        "logical_name": "lab",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Lower Age",
+        "original_name": "lower_age",
+        "logical_name": "lower_age",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Lower Range",
+        "original_name": "lower_range",
+        "logical_name": "lower_range",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Range Start Date",
+        "original_name": "range_start_dt",
+        "logical_name": "range_start_dt",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Range Unit",
+        "original_name": "range_unit",
+        "logical_name": "range_unit",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Sex",
+        "original_name": "sex",
+        "logical_name": "sex",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Finding Topic Code",
+        "original_name": "topic_cd",
+        "logical_name": "topic_cd",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Age",
+        "original_name": "upper_age",
+        "logical_name": "upper_age",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Upper Range",
+        "original_name": "upper_range",
+        "logical_name": "upper_range",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "plnd_prof_tm_pnt",
+    "original_name": "plnd_prof_tm_pnt",
+    "logical_name": "plnd_prof_tm_pnt",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Nominal Time",
+        "original_name": "nom_tm",
+        "logical_name": "nom_tm",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Profile Name",
+        "original_name": "prof_nm",
+        "logical_name": "prof_nm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Scheduled Day",
+        "original_name": "schd_day",
+        "logical_name": "schd_day",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Scheduled Time",
+        "original_name": "schd_tm",
+        "logical_name": "schd_tm",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Sequence Time",
+        "original_name": "seq_tm",
+        "logical_name": "seq_tm",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Time Point",
+        "original_name": "tm_pnt",
+        "logical_name": "tm_pnt",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Time Point Sequence",
+        "original_name": "tm_pnt_seq",
+        "logical_name": "tm_pnt_seq",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  },
+  {
+    "name": "trl_ctrl_grp",
+    "original_name": "trl_ctrl_grp",
+    "logical_name": "trl_ctrl_grp",
+    "columns": [
+      {
+        "name": "CDW Partition Key",
+        "original_name": "cdw_partition_key",
+        "logical_name": "cdw_partition_key",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "Control Group",
+        "original_name": "ctrl_grp",
+        "logical_name": "ctrl_grp",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Definition ID",
+        "original_name": "trl_def_id",
+        "logical_name": "trl_def_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial ID",
+        "original_name": "trl_id",
+        "logical_name": "trl_id",
+        "original_datatype": "text",
+        "logical_datatype": "text"
+      },
+      {
+        "name": "Trial Metadata Version",
+        "original_name": "trl_metadata_ver",
+        "logical_name": "trl_metadata_ver",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      },
+      {
+        "name": "ERROR_MARK",
+        "original_name": "ERROR_MARK",
+        "logical_name": "ERROR_MARK",
+        "original_datatype": "real",
+        "logical_datatype": "real"
+      }
+    ]
+  }
+]

@@ -136,3 +136,32 @@ def oncomx_query_types():
             "Root1(3) Root(2) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Sup(0) A(0) Op(0) C(-2) T(0) C(-2) T(0)": 1
         }
     return res
+
+def trialBench_query_types():
+    res = {
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(2) A(0) Op(0) C(101) T(0) C(101) T(0) V(1)': 3,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(2) A(0) Op(0) C(1) T(1) C(1) T(1) V(0)': 2,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(1) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(1) Filter(2) A(0) Op(0) C(2) T(0) C(2) T(0) V(2)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(0) Filter(1) Filter(2) A(0) Op(0) C(2) T(0) C(2) T(0) V(1) Filter(2) A(0) Op(0) C(2) T(0) C(2) T(0) V(2)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(3) Op(0) C(-1) T(0) C(-1) T(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(1) A(3) Op(0) C(-1) T(0) C(-1) T(0) A(0) Op(0) C(100) T(1) C(100) T(1) Filter(2) A(0) Op(0) C(100) T(1) C(100) T(1) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(3) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(2) T(0) C(2) T(0) A(0) Op(0) C(-2) T(0) C(-2) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(0) Filter(5) A(0) Op(0) C(-2) T(0) C(-2) T(0) V(1) Filter(2) A(0) Op(0) C(101) T(0) C(101) T(0) V(2)': 1,
+        'Root1(3) Root(3) Sel(0) N(3) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(2) T(0) C(2) T(0) A(0) Op(0) C(3) T(0) C(3) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(0) Filter(5) A(0) Op(0) C(-2) T(0) C(-2) T(0) V(1) Filter(4) A(0) Op(0) C(-3) T(0) C(-3) T(0) V(2)': 1,
+        'Root1(3) Root(5) Sel(0) N(0) A(0) Op(0) C(-1) T(0) C(-1) T(0)': 1,
+        'Root1(3) Root(5) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(3) Op(0) C(-1) T(0) C(-1) T(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(0) Filter(2) A(0) Op(0) C(101) T(0) C(101) T(0) V(1) Filter(1) Filter(2) A(0) Op(0) C(102) T(0) C(102) T(0) V(2) Filter(2) A(0) Op(0) C(102) T(0) C(102) T(0) V(3)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(1) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(1) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(1) Filter(1) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(2) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(3) Filter(2) A(0) Op(0) C(101) T(0) C(101) T(0) V(4)': 1,
+        'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(1) C(1) T(1) Filter(0) Filter(2) A(0) Op(0) C(100) T(1) C(100) T(1) V(0) Filter(0) Filter(4) A(0) Op(1) C(2) T(0) C(3) T(0) V(1) Filter(5) A(0) Op(1) C(2) T(0) C(3) T(0) V(2)': 1,
+        'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) Filter(2) A(0) Op(0) C(100) T(1) C(100) T(1) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(1) C(1) T(1) Filter(2) A(0) Op(0) C(100) T(1) C(100) T(1) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(1) Op(0) C(-2) T(0) C(-2) T(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(2) Op(0) C(-2) T(0) C(-2) T(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(3) A(0) Op(0) C(100) T(0) C(100) T(0) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(3) A(0) Op(0) C(100) T(1) C(100) T(1) V(0)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(3) Op(0) C(-1) T(0) C(-1) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(2) A(0) Op(0) C(101) T(0) C(101) T(0) V(1)': 1,
+        'Root1(3) Root(5) Sel(1) N(0) A(0) Op(0) C(100) T(0) C(100) T(0)': 1,
+        'Root1(3) Root(5) Sel(0) N(0) A(3) Op(0) C(-1) T(0) C(-1) T(0)': 1,
+        'Root1(3) Root(2) Sel(0) N(1) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(-2) T(1) C(-2) T(1) Sup(1) A(0) Op(0) C(-2) T(1) C(-2) T(1)': 1
+    }
+
+    return res

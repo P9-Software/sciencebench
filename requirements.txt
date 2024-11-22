@@ -13,5 +13,6 @@ pytictoc==1.5.2
 sentence_transformers==2.2.0
 spacy==3.1.1
 sqlparse==0.4.1
-torch==1.9.0
+torch==2.5.1
 tqdm==4.64.0
+textdistance==4.6.3

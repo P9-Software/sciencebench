@@ -15,15 +15,31 @@ from synthetic_data.group_pairs_to_find_templates import group_query_types, map_
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
 from dotenv import load_dotenv
+from transformers import pipeline
 
 load_dotenv()
+TASK = "text-generation"
+DEVICE = 0
+MAX_NEW_TOKENS = 200
 
 """
 Synthetic data generator by using Ursin's templates
 """
+class GraniteExecutor():
+    def __init__(self):
+        # seeklhy/codes-1b-bird 
+        # ibm-granite/granite-3b-code-base-128k
+        self.pipe = pipeline(TASK, model="seeklhy/codes-1b-bird", device=DEVICE, max_new_tokens=MAX_NEW_TOKENS)
+
+    def answer_question(self, question, number_of_choices):
+        output = self.pipe(question, return_full_text=False, num_return_sequences=number_of_choices)
+        print(output)
+        return output
 
 def ask_gpt(sample: str, number_of_choices: int, model_id: str, sec=3):
-
+    executor = GraniteExecutor()
+    prompt = sample + '\n\n###\n\n'
+    return executor.answer_question(sample), prompt
     # there is no need to to query engineering - we use a fine-tuned GPT3 model instead.
     response = None
     prompt = sample + '\n\n###\n\n'
@@ -63,7 +79,8 @@ def main(args):
                                 db_password=args.db_password,
                                 db_host=args.db_host,
                                 db_port=args.db_port,
-                                db_options=args.db_options)
+                                db_options=args.db_options,
+                                path="all_trial_metadata.db")
 
     query_cache = []
 

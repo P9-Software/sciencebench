@@ -6,7 +6,7 @@ from typing import List
 
 from spacy.lang.en import English
 
-from manual_inference.helper import get_schemas_cordis, tokenize_question, get_schema_hack_zurich, get_schema_sdss, get_schemas_spider, get_schema_oncomx, get_schemas_worldcup
+from manual_inference.helper import get_schemas_cordis, tokenize_question, get_schema_hack_zurich, get_schema_sdss, get_schemas_spider, get_schema_oncomx, get_schemas_worldcup, get_schemas_trial_bench
 from spider.test_suite_eval.process_sql import get_sql
 from tools.training_data_builder.schema import build_schema_mapping, SchemaIndex
 import logging
@@ -52,6 +52,8 @@ def main(args: argparse.Namespace):
         _, schemas_dict, _, _ = get_schemas_spider()
     elif args.data == 'world_cup_data_v2':
         _, schemas_dict, _, _ = get_schemas_worldcup()
+    elif args.data == 'TrialBench':
+        _, schemas_dict, _, _ = get_schemas_trial_bench() 
     else:
         raise ValueError('Dataset not yet supported')
 
@@ -133,7 +135,7 @@ def main(args: argparse.Namespace):
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument(
-        '--data', type=str, choices=['cordis', 'hack_zurich', 'skyserver_dr16_2020_11_30', 'spider', 'oncomx' ,'world_cup_data_v2'], required=True)
+        '--data', type=str, choices=['cordis', 'hack_zurich', 'skyserver_dr16_2020_11_30', 'spider', 'oncomx' ,'world_cup_data_v2', 'TrialBench'], required=True)
 
     args = arg_parser.parse_args()
     main(args)

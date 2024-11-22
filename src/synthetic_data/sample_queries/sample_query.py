@@ -105,7 +105,6 @@ def sample_table(t: T, op: Op, tables: dict, generative_schema: GenerativeSchema
                                                                     list(tables.values()),
                                                                     original_schema,
                                                                     generative_schema)
-
     assert len(unused_tables) > 0, "we try to sample more different tables than the schema has."
     sampled_table = random.choice(unused_tables)
 
