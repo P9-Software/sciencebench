@@ -171,6 +171,15 @@ def get_schemas_worldcup():
 
     return schemas_raw, schemas_dict, schema_path, database_path
 
+def get_schemas_trial_bench():
+    base_path = Path(Config.DATA_PREFIX) / 'TrialBench' / 'original'
+    schema_path = str(base_path / 'tables.json')
+    database_path = str(base_path / 'database')
+
+    schemas_raw, schemas_dict = spider_utils.load_schema(schema_path)
+
+    return schemas_raw, schemas_dict, schema_path, database_path
+
 def get_data_folder_by_database(database_name):
     if database_name == 'cordis_temporary' or database_name == 'cordis':
         return 'cordis'

@@ -14,44 +14,25 @@ from synthetic_data.common_query_types import common_query_types
 from synthetic_data.group_pairs_to_find_templates import group_query_types, map_semql_actions_only
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
-from dotenv import load_dotenv
+from transformers import pipeline
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-load_dotenv()
+TASK = "text-generation"
+DEVICE = 0
+MAX_NEW_TOKENS = 500
 
 """
 Synthetic data generator by using Ursin's templates
 """
-
-def ask_gpt(sample: str, number_of_choices: int, model_id: str, sec=3):
-
-    # there is no need to to query engineering - we use a fine-tuned GPT3 model instead.
-    response = None
-    prompt = sample + '\n\n###\n\n'
-    while response is None:
-        try:
-            response = openai.Completion.create(
-                model=model_id,
-                prompt=prompt,
-                # top_p=0.9,
-                max_tokens=128,
-                n=number_of_choices,
-                # frequency_penalty=0.5,
-                # presence_penalty=0.5,
-                stop=["\n"]
-            )
-            time.sleep(sec)
-            print(f"sleep {sec} sec...")
-        except Exception as e:
-            print(f"{e}")
-            sec += sec
-            time.sleep(sec)
-            pass
-    print(response)
-    return response, prompt
-
-
 def main(args):
-
+    device = "cuda"
+    model_path = "ibm-granite/granite-3.0-8b-instruct"
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    # drop device_map if running on CPU
+    model = AutoModelForCausalLM.from_pretrained(model_path, device_map=device)
+    model.eval()
+    # change input text as desired
     with open(Path(args.data_path) / 'original' / 'tables.json') as f:
         schemas = json.load(f)
         original_schema = schemas[0]  # we assume there is only one db-schema in this file
@@ -63,7 +44,8 @@ def main(args):
                                 db_password=args.db_password,
                                 db_host=args.db_host,
                                 db_port=args.db_port,
-                                db_options=args.db_options)
+                                db_options=args.db_options,
+                                path="all_trial_metadata.db")
 
     query_cache = []
 
@@ -86,16 +68,29 @@ def main(args):
 
                 print(f'{query_type}                        {sampled_query}')
 
-                response, prompt = ask_gpt(sampled_query_replaced, args.number_of_choices, args.gpt3_finetuned_model)
-
-                gpt_choices = [f"({idx}) {c['text'].strip()}" for idx, c in enumerate(response['choices'])]
-
-                with open(Path(args.output_folder) / f'{idx}_{round_idx}.txt', 'w') as f:
+                prompt = "Generate " + str(args.number_of_choices) + " natural language questions that ask the question that is being answered by this query: " + sampled_query_replaced + '\n\n' + "Put an answer on each line starting with (number) like this:" + '\n\n' + "(1) This is the first question" + '\n\n' + "(2) This is the second question "
+                chat = [
+                    {"role": "user", "content": prompt}
+                ]
+                chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+                # tokenize the text
+                input_tokens = tokenizer(chat, return_tensors="pt").to(device)
+                # generate output tokens
+                output = model.generate(**input_tokens, 
+                                        max_new_tokens=MAX_NEW_TOKENS)
+                # decode output tokens into text
+                response = tokenizer.batch_decode(output)
+                
+                # Get answers from response
+                answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
+                output_path = Path(args.output_folder) / f'{idx}_{round_idx}.txt'
+                os.makedirs(output_path.parent, exist_ok=True)
+                with open(output_path, 'w') as f:
                     f.write(prompt)
                     f.write('\nOriginal Query:\n')
                     f.write(sampled_query)
                     f.write('\nGPT-3 choices:\n')
-                    f.write('\n'.join(gpt_choices))
+                    f.write('\n'.join(answers))
 
                 round_idx += 1
 
