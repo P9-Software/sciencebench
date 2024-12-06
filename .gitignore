@@ -3,6 +3,7 @@ pre_trained_models/
 experiments/
 data/spider/original/database
 nohup.out
+data/TrialBench
 
 #intellij
 

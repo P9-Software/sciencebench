@@ -1,4 +1,5 @@
 import argparse
+import os
 import json
 import random
 from collections import Counter
@@ -70,12 +71,12 @@ def main(data_path:str):
             # print()
     df = pd.DataFrame(res)
     output_file = Path(data_path).parent / 'templates_report_dev.xlsx'
-    if not output_file.exists():
-        with pd.ExcelWriter(output_file) as writer:
-            df.to_excel(writer, index=False)
-            writer.save()
-    else:
-        print('file existed. Task cancelled.')
+    if output_file.exists():
+        os.remove(output_file)
+
+    with pd.ExcelWriter(output_file) as writer:
+        df.to_excel(writer, index=False)
+        writer._save()
         
         # print()
         # print()
@@ -86,7 +87,7 @@ if __name__ == '__main__':
     random.seed(42)
 
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--data_containing_semql', type=str, default='data/spider/dev.json')
+    arg_parser.add_argument('--data_containing_semql', type=str, default='data/TrialBench/all_trial_metadata_dev.json')
 
     args = arg_parser.parse_args()
     main(args.data_containing_semql)
