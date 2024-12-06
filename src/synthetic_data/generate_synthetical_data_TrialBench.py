@@ -5,7 +5,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 
-from synthetic_data.common_query_types import common_query_types
+from synthetic_data.common_query_types import all_trial_metadata_query_types, gcmd_query_types
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -39,8 +39,8 @@ def main(args):
                                 path=args.db_path)
 
     query_cache = []
-
-    for idx, (query_type, multiplier) in enumerate(common_query_types().items()):
+    query_types = all_trial_metadata_query_types() if args.database == "all_trial_metadata" else gcmd_query_types()
+    for idx, (query_type, multiplier) in enumerate(query_types.items()):
 
         round_idx = 0
         fail_to_sample = 0

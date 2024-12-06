@@ -85,3 +85,17 @@ def common_query_types():
         'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(3) A(0) Op(0) C(1) T(0) C(1) T(0) V(0)': 2,  # simple select and a filter with an unequal operator. Example: SELECT name FROM channel WHERE OWNER != 'CCTV'
         'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(3) A(0) Op(0) C(1) T(1) C(1) T(1) V(0)': 2,  # simple select and a filter with an unequal operator. Join over two tables. Example: SELECT T1.Name FROM people AS T1 JOIN perpetrator AS T2 ON T1.People_ID  =  T2.People_ID WHERE T2.Country != "China"
     }
+
+# For details on the selected query types/templates refer to semql report on Teams
+def all_trial_metadata_query_types():
+    return {
+        'Root1(3) Root(5) Sel(0) N(0) A(0) C(*) T(*)': 1,
+        'Root1(3) Root(5) Sel(0) N(1) A(0) C(*) T(*) A(0) C(*) T(*)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(0) C(*) T(*) Filter(9) A(0) C(*) T(*)': 1,
+        'Root1(3) Root(3) Sel(0) N(0) A(3) C(*) T(*) Filter(9) A(0) C(*) T(*)': 1
+    }
+
+def gcmd_query_types():
+    return {
+        
+    }
