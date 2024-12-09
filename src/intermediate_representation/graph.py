@@ -43,6 +43,7 @@ class Graph:
         return neighbours
 
     def dijkstra(self, source, dest):
+        print(self.vertices)
         assert source in self.vertices, 'Such source node doesn\'t exist'
         assert dest in self.vertices, 'Such dest node doesn\'t exis'
 

@@ -13,14 +13,15 @@ from tools.transform_generative_schema import GenerativeSchema
 
 from synthetic_data.sample_queries.sample_query import sample_query
 
-from synthetic_data.specific_query_types import sdss_query_types, cordis_query_types, oncomx_query_types
+from synthetic_data.specific_query_types import sdss_query_types, cordis_query_types, oncomx_query_types, trialBench_query_types
 
-from generate_synthetical_spider_dev_sql import check_spider_compabilities
+from synthetic_data.generate_synthetical_spider_dev_sql import check_spider_compabilities
 
 import argparse
 
 def load_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--db_path', type=str, default="TrialBench")
     parser.add_argument('--dataset', type=str, default="oncomx")
     parser.add_argument('--database', type=str, default="oncomx_v1_0_25_small")
     parser.add_argument('--db_user', type=str, default="postgres")
@@ -34,10 +35,18 @@ def get_type_queries(dataset):
     queries_type_dict = {
         'skyserver_dr16_2020_11_30': sdss_query_types,
         'cordis': cordis_query_types,
-        'oncomx': oncomx_query_types
+        'oncomx': oncomx_query_types,
+        'TrialBench': trialBench_query_types
     }
     if dataset in queries_type_dict.keys():
         return queries_type_dict[dataset]()
+
+def connect_to_db(db_path):
+    """Connect to SQLite database."""
+    if not Path(db_path).exists():
+        raise FileNotFoundError(f"Database file {db_path} does not exist.")
+    conn = sqlite3.connect(db_path)
+    return conn
 
 def main():
     random.seed(42)
@@ -49,16 +58,15 @@ def main():
 
     generative_schema = GenerativeSchema(Path('data') / dataset / 'generative' / 'generative_schema.json')
 
+    db_config = SimpleNamespace(
+        database=args.db_path,
+        db_options=None,
+        path=args.db_path
+    )
+    
+    #conn = connect_to_db(db_config.database)
+    #conn.close()
 
-    db_config = SimpleNamespace(database=args.database,
-                                db_user=args.db_user,
-                                db_password=args.db_password,
-                                db_host=args.db_host,
-                                db_port=args.db_port,
-                                db_options=f"-c search_path={args.db_schema}",
-                                path=None)
-
-    """
     query_types = ['Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(1) C(1) T(0) C(2) T(0) Filter(5) A(0) Op(1) C(1) T(0) C(2) T(0) V(0)',
                    'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(1) C(0) T(0) C(1) T(0) Filter(5) A(0) Op(1) C(1) T(0) C(2) T(0) V(0)',
                    'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(1) C(1) T(0) C(2) T(0) Filter(0) Filter(5) A(0) Op(1) C(1) T(0) C(2) T(0) V(0) Filter(5) A(0) Op(1) C(2) T(0) C(3) T(0) V(1)',
@@ -67,7 +75,6 @@ def main():
                    'Root1(3) Root(3) Sel(0) N(3) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(-2) T(0) C(-2) T(0) A(0) Op(0) C(-3) T(0) C(-3) T(0) A(0) Op(0) C(-4) T(0) C(-4) T(0) Filter(0) Filter(2) A(0) Op(0) C(100) T(0) C(100) T(0) V(0) Filter(0) Filter(5) A(0) Op(0) C(-4) T(0) C(-4) T(0) V(1) Filter(4) A(0) Op(0) C(-4) T(0) C(-4) T(0) V(2)',
                    'Root1(3) Root(3) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(1) C(1) T(1) Filter(0) Filter(2) A(0) Op(0) C(100) T(1) C(100) T(1) V(0) Filter(0) Filter(4) A(0) Op(1) C(2) T(0) C(3) T(0) V(1) Filter(5) A(0) Op(1) C(2) T(0) C(3) T(0) V(2)' 
              ]
-    """
     query_types = get_type_queries(dataset)
     output_json = Path('data') / dataset / 'generative' / 'syntetic_queries.json'
     for idx, (query_type, factor) in enumerate(list(query_types.items())):

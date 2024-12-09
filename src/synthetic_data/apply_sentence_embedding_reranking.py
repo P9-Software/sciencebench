@@ -17,17 +17,21 @@ def read_generative_choices(path):
         original_query = '---'
 
     generative_choices = []
-    for i in range(0, 8):
-        choice_line = filter(lambda l: l.startswith(f'({i})'), lines)
-        choice = next(choice_line)[4:]
-        choice = choice.strip()
-        # 1. remove the empty lines if exsited
-        # 2. Always capitalize the first letter of a sentences so that we can eliminate some deduplicated results.
-        if len(choice) > 0:
-            _choice = choice[0].upper() + choice[1:]
-            if _choice not in generative_choices:
-                generative_choices.append(_choice)
-
+    index = 1
+    while True:
+        choice_line = filter(lambda l: l.startswith(f'{index}.'), lines)
+        try:
+            # Extract the matching line and process it
+            choice = next(choice_line)[len(f'{index}.'):].strip()
+            # Ensure non-empty lines and capitalize the first letter
+            if len(choice) > 0:
+                _choice = choice[0].upper() + choice[1:]
+                if _choice not in generative_choices:
+                    generative_choices.append(_choice)
+            index += 1  # Increment the index for the next line
+        except StopIteration:
+            # Exit the loop when no more lines match
+            break
     return generative_choices, original_query.strip(), lines
 
 

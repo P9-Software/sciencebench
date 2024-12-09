@@ -456,7 +456,6 @@ def build_graph(schema):
                          pkey_table, pkey_original_name))
         relations.append((pkey_table, pkey_original_name,
                          fkey_table, fkey_original_name))
-
     return Graph(relations)
 
 
