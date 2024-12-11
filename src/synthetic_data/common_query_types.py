@@ -89,13 +89,15 @@ def common_query_types():
 # For details on the selected query types/templates refer to semql report on Teams
 def all_trial_metadata_query_types():
     return {
-        'Root1(3) Root(5) Sel(0) N(0) A(0) C(*) T(*)': 1,
-        'Root1(3) Root(5) Sel(0) N(1) A(0) C(*) T(*) A(0) C(*) T(*)': 1,
-        'Root1(3) Root(3) Sel(0) N(0) A(0) C(*) T(*) Filter(9) A(0) C(*) T(*)': 1,
-        'Root1(3) Root(3) Sel(0) N(0) A(3) C(*) T(*) Filter(9) A(0) C(*) T(*)': 1
+        'Root1(3) Root(5) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0)': 1, # SELECT column1 FROM table1;
+        'Root1(3) Root(5) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0)': 1,    # SELECT column1, column2 FROM table1;
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0)': 1, # SELECT column1 FROM table1 WHERE column1 LIKE '%substring%';
+        'Root1(3) Root(3) Sel(1) N(0) A(3) Op(0) C(0) T(0) C(0) T(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0)': 1, # SELECT COUNT(DISTINCT column1) FROM table1 WHERE column1 LIKE '%substring%';
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(1)': 1 # SELECT column1 FROM table1 WHERE column1 LIKE '%substring%' AND column2 = 'some_value';
     }
 
 def gcmd_query_types():
     return {
-        
+        'Root1(3) Root(3) Sel(1) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(0)': 1, # SELECT DISTINCT column1 FROM table1 WHERE column2 = 'some_value';
+        'Root1(3) Root(3) Sel(0) N(0) A(1) Op(0) C(0) T(0) C(0) T(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(0)': 1 # SELECT MAX(column1) FROM table1 WHERE column2 = 'some_value';
     }
