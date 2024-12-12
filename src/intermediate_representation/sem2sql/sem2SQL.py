@@ -538,7 +538,7 @@ def to_str(sql_json, N_T, schema, pre_table_names=None, readable_alias=False):
     sup_clause = ''
     order_clause = ''
     direction_map = {"des": 'DESC', 'asc': 'ASC'}
-
+ 
     if 'sup' in sql_json:
         if len(sql_json['sup']) == 7:
             (direction, agg, op, col, tab, col_2, tab_2) = sql_json['sup']
