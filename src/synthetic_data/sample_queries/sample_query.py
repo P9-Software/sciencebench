@@ -150,6 +150,12 @@ def sample_column(c: C, a: A, op: Op, columns: dict, table_value: str, generativ
             column for column in unused_columns
             if generative_schema.get_schema_for_column(table_value, column)['logical_datatype'] == 'number'
         ]
+    elif a.id_c in [6]:
+        unused_columns = [
+            column for column in unused_columns
+            if generative_schema.get_schema_for_column(table_value, column)['logical_datatype'] == 'text'
+        ]
+
     
     # C(-2) is a special case, referring to a superlative (Sup()) case. Here we can also only handle dates or numbers,
     # even though the aggregator is a A(0)

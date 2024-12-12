@@ -158,7 +158,9 @@ class N(Action):
             1: 'N A A',
             2: 'N A A A',
             3: 'N A A A A',
-            4: 'N A A A A A'
+            4: 'N A A A A A',
+            5: 'N A A A A A A',
+            6: 'N A A A A A A A'
         }
         self.production_id = {}
         for id_x, value in enumerate(self.grammar_dict.values()):
@@ -257,7 +259,8 @@ class A(Action):
             2: "A min Op",
             3: "A count Op",
             4: "A sum Op",
-            5: "A avg Op"
+            5: "A avg Op",
+            6: "A upper Op"
         }
         self.production_id = {}
         for id_x, value in enumerate(self.grammar_dict.values()):

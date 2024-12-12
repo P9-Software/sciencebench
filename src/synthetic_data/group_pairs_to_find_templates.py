@@ -87,7 +87,7 @@ if __name__ == '__main__':
     random.seed(42)
 
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--data_containing_semql', type=str, default='data/TrialBench/all_trial_metadata_dev.json')
+    arg_parser.add_argument('--data_containing_semql', type=str, default='data/TrialBench/In_spider_format/all_trial_metadata_dev.json')
 
     args = arg_parser.parse_args()
     main(args.data_containing_semql)

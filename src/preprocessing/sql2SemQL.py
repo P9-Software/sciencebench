@@ -527,8 +527,8 @@ if __name__ == '__main__':
 
     with open('new.txt', 'a') as the_file:
         for row in data:
-            if len(row['sql']['select'][1]) > 5:
-                print('more than 5 rows to select! Currently not implemented')
+            if len(row['sql']['select'][1]) > 7:
+                print('more than 7 rows to select! Currently not implemented')
                 continue
 
             # we can either let the model predict from the ground truth-values only (values extracted directly from the SQL-structure) or we can instead
