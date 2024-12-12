@@ -517,7 +517,7 @@ if __name__ == '__main__':
                             help='table dataset', required=True)
     arg_parser.add_argument('--output', type=str,
                             help='output data', required=True)
-    arg_parser.add_argument('--use_ner_value_candidates', action='store_true', default=True, help="we can either let the model predict from the ground truth-values only (values extracted directly from the SQL-structure) "
+    arg_parser.add_argument('--use_ner_value_candidates', default=False, help="we can either let the model predict from the ground truth-values only (values extracted directly from the SQL-structure) "
                                                                                                   "or we can instead let it predict the right value from a set of possible values extracted by NER and handcrafted heuristics (see pre_process_ner_values.py)")
     args = arg_parser.parse_args()
 
@@ -527,8 +527,8 @@ if __name__ == '__main__':
 
     with open('new.txt', 'a') as the_file:
         for row in data:
-            if len(row['sql']['select'][1]) > 5:
-                print('more than 5 rows to select! Currently not implemented')
+            if len(row['sql']['select'][1]) > 7:
+                print('more than 7 rows to select! Currently not implemented')
                 continue
 
             # we can either let the model predict from the ground truth-values only (values extracted directly from the SQL-structure) or we can instead
@@ -542,7 +542,7 @@ if __name__ == '__main__':
                 row['values'] = row['ner_extracted_values_processed']
                 del row['ner_extracted_values_processed']
             else:
-                parser = Parser(row['values'])
+                parser = Parser(build_value_list=True)
 
             # here is where the magic happens: we parse the SQL from the spider-examples and create a SemQL-AST fro it.
             semql_result = parser.full_parse(row)

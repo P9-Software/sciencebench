@@ -633,7 +633,7 @@ def to_str(sql_json, N_T, schema, pre_table_names=None, readable_alias=False):
                 if len(conjunctions):
                     filters.append(conjunctions.pop())
 
-        aggs = ['count(', 'avg(', 'min(', 'max(', 'sum(']
+        aggs = ['count(', 'avg(', 'min(', 'max(', 'sum(', 'upper(']
         having_filters = list()
         idx = 0
         while idx < len(filters):
