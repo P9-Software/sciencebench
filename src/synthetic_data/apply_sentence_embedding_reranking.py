@@ -11,28 +11,37 @@ def read_generative_choices(path):
     with open(path) as f:
         lines = f.readlines()
 
+    # Extract the original query
     try:
-        original_query = lines[lines.index("Original Query:\n") + 1]
-    except:
+        original_query = lines[lines.index("Original Query:\n") + 1].strip()
+    except (ValueError, IndexError):
         original_query = '---'
 
-    generative_choices = []
-    index = 1
-    while True:
-        choice_line = filter(lambda l: l.startswith(f'{index}.'), lines)
-        try:
-            # Extract the matching line and process it
-            choice = next(choice_line)[len(f'{index}.'):].strip()
-            # Ensure non-empty lines and capitalize the first letter
-            if len(choice) > 0:
-                _choice = choice[0].upper() + choice[1:]
-                if _choice not in generative_choices:
-                    generative_choices.append(_choice)
-            index += 1  # Increment the index for the next line
-        except StopIteration:
-            # Exit the loop when no more lines match
+    start_index = None
+    for i, line in enumerate(lines):
+        if "choices:" in line:
+            start_index = i + 1
             break
-    return generative_choices, original_query.strip(), lines
+
+    if start_index is None:
+        print("choices: not found; return defaults")
+        return [], original_query, lines
+
+    # Extract generative choices from lines after "choices:"
+    generative_choices = []
+    for line in lines[start_index:]:
+        line = line.strip()
+        # Check if the line starts with a number and a dot
+        if line and line[0].isdigit() and line[1] == '.':
+            # Extract and clean the choice text
+            choice = line[2:].strip()
+            if choice:
+                # Capitalize the first letter and avoid duplicates
+                choice = choice[0].upper() + choice[1:]
+                if choice not in generative_choices:
+                    generative_choices.append(choice)
+
+    return generative_choices, original_query, lines
 
 
 def rank_by_aggregated_pairwise_similarity(choices: List[str], model: SentenceTransformer):

@@ -14,19 +14,38 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 TASK = "text-generation"
 MAX_NEW_TOKENS = 500
+DEVICE = "cuda"
+MODELS = {
+    "granite-3b": "ibm-granite/granite-3.0-8b-instruct"
+}
 
 """
 Synthetic data generator by using Ursin's templates
 """
-def main(args):
-    device = "cuda"
-    model_path = "ibm-granite/granite-3.0-8b-instruct"
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    # drop device_map if running on CPU
-    model = AutoModelForCausalLM.from_pretrained(model_path, device_map=device)
-    model.eval()
-    # change input text as desired
-    print(args.database)
+def generate_synthetic_data(args):
+    queries = get_all_query_samples(args)
+    for model_name, model_path in MODELS:
+        model, tokenizer = setup_model(model_path)
+        for query in queries:
+            table_name = find_table_name_in_sample(query["sampled_query"])
+            table_string = table_name_lookup(args, table_name)
+
+            prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(args.number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + query["sampled_query_replaced"] + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
+            
+            response = ask_model(model, tokenizer, prompt)
+            
+            # Get answers from response
+            answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
+            output_path = Path(args.output_folder) / model_name / f'{query["idx"]}_{query["round_idx"]}.txt'
+            os.makedirs(output_path.parent, exist_ok=True)
+            with open(output_path, 'w') as f:
+                f.write(prompt)
+                f.write('\nOriginal Query:\n')
+                f.write(query["sampled_query"])
+                f.write(f'\n{model_name} choices:\n')
+                f.write('\n'.join(answers))
+
+def get_all_query_samples(args):
     table_file = args.database + '_tables.json'
     with open(Path(args.data_path) / 'original' / table_file) as f:
         schemas = json.load(f)
@@ -41,9 +60,9 @@ def main(args):
                                 db_port="",
                                 db_options="",
                                 path=args.db_path)
-
     query_cache = []
     query_types = all_trial_metadata_query_types() if args.database == "all_trial_metadata" else gcmd_query_types()
+    result = []
 
     for idx, (query_type, multiplier) in enumerate(query_types.items()):
 
@@ -61,41 +80,38 @@ def main(args):
                     raise ValueError('Query already sampled')
                 else:
                     query_cache.append(sampled_query)
-
-                print(f'{query_type}                        {sampled_query}')
-
-                table_name = find_table_name_in_sample(sampled_query)
-                table_string = table_name_lookup(args, table_name)
-
-                prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(args.number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + sampled_query_replaced + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
-                chat = [
-                    {"role": "user", "content": prompt}
-                ]
-                chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
-                # tokenize the text
-                input_tokens = tokenizer(chat, return_tensors="pt").to(device)
-                # generate output tokens
-                output = model.generate(**input_tokens, 
-                                        max_new_tokens=MAX_NEW_TOKENS)
-                # decode output tokens into text
-                response = tokenizer.batch_decode(output)
-                
-                # Get answers from response
-                answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
-                output_path = Path(args.output_folder) / f'{idx}_{round_idx}.txt'
-                os.makedirs(output_path.parent, exist_ok=True)
-                with open(output_path, 'w') as f:
-                    f.write(prompt)
-                    f.write('\nOriginal Query:\n')
-                    f.write(sampled_query)
-                    f.write('\nGranite choices:\n')
-                    f.write('\n'.join(answers))
-
-                round_idx += 1
+                    result.append({
+                        'idx': idx,
+                        'round_idx': round_idx,
+                        'sampled_query': sampled_query,
+                        'sampled_query_replaced': sampled_query_replaced
+                    })
+                    round_idx += 1
 
             except ValueError as e:
                 print(f'Exception:{e}')
                 fail_to_sample += 1
+    return result
+
+def ask_model(model, tokenizer, prompt):
+    chat = [
+        {"role": "user", "content": prompt}
+    ]
+    chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+    # tokenize the text
+    input_tokens = tokenizer(chat, return_tensors="pt").to(DEVICE)
+    # generate output tokens
+    output = model.generate(**input_tokens, 
+                            max_new_tokens=MAX_NEW_TOKENS)
+    # decode output tokens into text
+    return tokenizer.batch_decode(output)
+
+def setup_model(model_kv):
+    tokenizer = AutoTokenizer.from_pretrained(model_kv)
+    # drop device_map if running on CPU
+    model = AutoModelForCausalLM.from_pretrained(model_kv, device_map=DEVICE)
+    model.eval()
+    return model, tokenizer
 
 def find_table_name_in_sample(sample):
     parts = sample.split()
@@ -130,7 +146,6 @@ def table_name_lookup(args, table):
                 table_string += f"{table}\t{column}\t{column_label}\n"
     return table_string
 
-
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--data_path', type=str, default='data/TrialBench')
@@ -144,4 +159,5 @@ if __name__ == '__main__':
     arg_parser.add_argument('--db_path', type=str,default='all_trial_metadata.db')
 
     args = arg_parser.parse_args()
-    main(args)
+
+    generate_synthetic_data(args)

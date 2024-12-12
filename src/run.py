@@ -1,6 +1,12 @@
 from synthetic_data.generate_synthetical_data_TrialBench import main
 import argparse
 
+# all_trial_metadata
+# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/all_trial_metadata --database all_trial_metadata --db_path all_trial_metadata.db
+# gcmd
+# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/gcmd --database gcmd --db_path gcmd.db
+# combined
+# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/combined --database combined --db_path combined.db
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--data_path', type=str, default='data/TrialBench')
