@@ -1,7 +1,9 @@
 import argparse
+from collections import defaultdict
 import json
 import os
 from pathlib import Path
+import sqlite3
 from types import SimpleNamespace
 
 
@@ -24,11 +26,13 @@ def main(args):
     model = AutoModelForCausalLM.from_pretrained(model_path, device_map=device)
     model.eval()
     # change input text as desired
-    with open(Path(args.data_path) / 'original' / args.database + '_tables.json') as f:
+    print(args.database)
+    table_file = args.database + '_tables.json'
+    with open(Path(args.data_path) / 'original' / table_file) as f:
         schemas = json.load(f)
         original_schema = schemas[0]  # we assume there is only one db-schema in this file
-
-    generative_schema = GenerativeSchema(Path(args.data_path) / 'generative' / args.database + '_generative_schema.json')
+    generated_schema_file = args.database + '_generative_schema.json'
+    generative_schema = GenerativeSchema(Path(args.data_path) / 'generative' / generated_schema_file)
 
     db_config = SimpleNamespace(database=args.database,
                                 db_user="",
@@ -40,6 +44,7 @@ def main(args):
 
     query_cache = []
     query_types = all_trial_metadata_query_types() if args.database == "all_trial_metadata" else gcmd_query_types()
+
     for idx, (query_type, multiplier) in enumerate(query_types.items()):
 
         round_idx = 0
@@ -59,9 +64,10 @@ def main(args):
 
                 print(f'{query_type}                        {sampled_query}')
 
-                prompt = "Generate " + str(args.number_of_choices) + " natural language questions that you would ask a database if you did not know the schema but wanted to know the information that this query returns:" 
-                + sampled_query_replaced + '\n\n' + "Do not use any of the column/table names in the query to ask the question" 
-                + '\n\n' + "Put an answer on each line starting with (number) like this:" + '\n\n' + "(1) This is the first question" + '\n\n' + "(2) This is the second question "
+                table_name = find_table_name_in_sample(sampled_query)
+                table_string = table_name_lookup(args, table_name)
+
+                prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(args.number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + sampled_query_replaced + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
                 chat = [
                     {"role": "user", "content": prompt}
                 ]
@@ -82,7 +88,7 @@ def main(args):
                     f.write(prompt)
                     f.write('\nOriginal Query:\n')
                     f.write(sampled_query)
-                    f.write('\Granite choices:\n')
+                    f.write('\nGranite choices:\n')
                     f.write('\n'.join(answers))
 
                 round_idx += 1
@@ -90,6 +96,39 @@ def main(args):
             except ValueError as e:
                 print(f'Exception:{e}')
                 fail_to_sample += 1
+
+def find_table_name_in_sample(sample):
+    parts = sample.split()
+    try:
+        from_index = parts.index("FROM") + 1
+        as_index = parts.index("AS")
+        
+        table_name = " ".join(parts[from_index:as_index])
+    except ValueError:
+        print("Required keywords 'FROM' or 'AS' not found in the query.")
+    return table_name
+
+def table_name_lookup(args, table):
+    connection = sqlite3.connect(args.db_path)
+    cursor = connection.cursor()
+    schema_with_descriptions = defaultdict(list)
+    result = cursor.execute("SELECT * FROM column_label_lookup WHERE Table_name='" + table + "';").fetchall()
+
+    schema_with_descriptions = {}
+
+    for table, column, column_description in result:
+        if table not in schema_with_descriptions:
+            schema_with_descriptions[table] = []
+        schema_with_descriptions[table].append({column: column_description})
+
+    table_string = "Table_name\tColumn_name\tColumn_label\n"
+    table_string += "-" * 40 + "\n"  # Separator line
+
+    for table, columns in schema_with_descriptions.items():
+        for column_entry in columns:
+            for column, column_label in column_entry.items():
+                table_string += f"{table}\t{column}\t{column_label}\n"
+    return table_string
 
 
 if __name__ == '__main__':
