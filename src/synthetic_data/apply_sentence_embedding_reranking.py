@@ -75,10 +75,11 @@ Re-ranked choices:
 def rerank(db_id, input_data_path, output_file, models):
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
-    samples = []
     for model_name, _ in models.items():
+        samples = []
+        model_scores = []
         path = input_data_path + "/" + model_name
-        for idx, path in enumerate(Path(input_data_path).glob('*.txt')):
+        for idx, path in enumerate(Path(path).glob('*.txt')):
             choices, original_sql_query, original_file_content = read_generative_choices(path)
 
             choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
@@ -90,6 +91,10 @@ def rerank(db_id, input_data_path, output_file, models):
             print(choice_reranked)
             print()
             print()
+
+            # Save the scores
+            model_scores.append(choice_reranked[0][1])
+            model_scores.append(choice_reranked[1][1])
 
             # we wanna keep both, the first and the second choice after re-ranking
             samples.append({
@@ -107,9 +112,14 @@ def rerank(db_id, input_data_path, output_file, models):
                 'question': choice_reranked[1][0],
                 'query': original_sql_query
             })
-
-        with open(output_file, 'w', encoding='utf-8') as f:
+        model_average_score = sum(model_scores) / len(model_scores)
+        with open(output_file + model_name + "_score.txt", 'w', encoding='utf-8') as f:
+            f.write("Average score:" + str(model_average_score) + "\n\n")
+            for score in model_scores:
+                f.write(f"{score}\n")
+        with open(output_file + "_" + model_name + ".json", 'w', encoding='utf-8') as f:
             json.dump(samples, f, indent=2)
+
 
 
 if __name__ == '__main__':

@@ -5,12 +5,14 @@ import os
 from pathlib import Path
 import sqlite3
 from types import SimpleNamespace
+import torch
 from tqdm import tqdm
 
 from synthetic_data.common_query_types import all_trial_metadata_query_types, gcmd_query_types, combined_query_types
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import gc
 
 TASK = "text-generation"
 MAX_NEW_TOKENS = 500
@@ -26,7 +28,6 @@ def generate_synthetic_data(database, data_path, db_path, number_of_choices, mod
         print(model_name)
         model, tokenizer = setup_model(model_path)
         for query in tqdm(queries):
-            assert True
             table_name = find_table_name_in_sample(query["sampled_query"])
 
             table_string = table_name_lookup(db_path, table_name)
@@ -34,10 +35,16 @@ def generate_synthetic_data(database, data_path, db_path, number_of_choices, mod
             
             response = ask_model(model, tokenizer, prompt)
             save_answer(response, model_name, query, prompt, database)
+        
+        # Get that damn model off my gpus
+        del model
+        del tokenizer
+        gc.collect()
+        torch.cuda.empty_cache()
             
 def save_answer(response, model_name, query, prompt, database):
     # Get answers from response
-    answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
+    answers = parse_response(response, model_name)
     output_path = Path("data/TrialBench/generative/generated") / database / model_name / f'{query["idx"]}_{query["round_idx"]}.txt'
     os.makedirs(output_path.parent, exist_ok=True)
     with open(output_path, 'w') as f:
@@ -46,6 +53,31 @@ def save_answer(response, model_name, query, prompt, database):
         f.write(query["sampled_query"])
         f.write(f'\n{model_name} choices:\n')
         f.write('\n'.join(answers))
+
+def parse_response(response, model_name):
+    if model_name == "granite-instruct-3b":
+        answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
+    if model_name == "granite-code-34b":
+        text = response[0]
+        answer_start = text.find("Answer:")
+        answer_text = text[answer_start + len("Answer:"):]
+        end_marker = "<|endoftext|>"
+        answer_text = answer_text.split(end_marker)[0]
+        lines = answer_text.strip().split("\n")
+        answers = [line.strip() for line in lines if line.strip().startswith(tuple(str(i) + "." for i in range(1, 10)))]
+    if model_name == "llama-70b":
+        header_split = response[0].split("<|end_header_id|>")
+        content = header_split[-1].strip()
+        content = content.split("<|eot_id|>")[0].strip()
+        # Exclude the "Here are the answers" part
+        if "Here are" in content:
+            content = content.split("Here are", 1)[-1].strip()
+
+        # Extract the answers into a list, starting with numbers and a dot
+        lines = content.split("\n")
+        answers = [line.strip() for line in lines if line.strip() and line.strip()[0].isdigit() and line.strip()[1] == "."]
+
+    return answers
 
 def get_all_query_samples(database, data_path, db_path):
     table_file = database + '_tables.json'
@@ -63,6 +95,7 @@ def get_all_query_samples(database, data_path, db_path):
                                 db_options="",
                                 path=db_path)
     query_cache = []
+    result = []
     
     match database:
         case "all_trial_metadata":
@@ -107,10 +140,13 @@ def ask_model(model, tokenizer, prompt):
     ]
     chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
     # tokenize the text
-    input_tokens = tokenizer(chat, return_tensors="pt").to(DEVICE)
+    input_tokens = tokenizer(chat, return_tensors="pt")    
+    # Move input tokens to the same device as the model
+    input_tokens = {key: value.to(model.device) for key, value in input_tokens.items()}
     # generate output tokens
     output = model.generate(**input_tokens, 
-                            max_new_tokens=MAX_NEW_TOKENS)
+                            max_new_tokens=MAX_NEW_TOKENS,
+                            pad_token_id=tokenizer.eos_token_id)
     # decode output tokens into text
     return tokenizer.batch_decode(output)
 
