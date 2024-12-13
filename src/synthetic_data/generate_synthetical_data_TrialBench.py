@@ -31,13 +31,13 @@ def generate_synthetic_data(database, data_path, db_path, number_of_choices):
         model, tokenizer = setup_model(model_path)
         for query in tqdm(queries):
             assert True
-#            table_name = find_table_name_in_sample(query["sampled_query"])
+            table_name = find_table_name_in_sample(query["sampled_query"])
 
-#            table_string = table_name_lookup(db_path, table_name)
-#            prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + query["sampled_query_replaced"] + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
+            table_string = table_name_lookup(db_path, table_name)
+            prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + query["sampled_query_replaced"] + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
             
-#            response = ask_model(model, tokenizer, prompt)
-#            save_answer(response, model_name, query, prompt)
+            response = ask_model(model, tokenizer, prompt)
+            save_answer(response, model_name, query, prompt)
             
 def save_answer(response, model_name, query, prompt):
     # Get answers from response
