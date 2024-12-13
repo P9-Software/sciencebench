@@ -72,12 +72,12 @@ Re-ranked choices:
     new_file.write_text(new_file_content)
 
 
-def main(args):
+def rerank(db_id, input_data_path, output_file):
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
     samples = []
 
-    for idx, path in enumerate(Path(args.input_data_path).glob('*.txt')):
+    for idx, path in enumerate(Path(input_data_path).glob('*.txt')):
         choices, original_sql_query, original_file_content = read_generative_choices(path)
 
         choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
@@ -92,7 +92,7 @@ def main(args):
 
         # we wanna keep both, the first and the second choice after re-ranking
         samples.append({
-            'db_id': args.db_id,
+            'db_id': db_id,
             'id': f'{idx}_1',
             'user': "gpt-3",
             'question': choice_reranked[0][0],
@@ -100,14 +100,14 @@ def main(args):
         })
 
         samples.append({
-            'db_id': args.db_id,
+            'db_id': db_id,
             'id': f'{idx}_2',
             'user': "gpt-3",
             'question': choice_reranked[1][0],
             'query': original_sql_query
         })
 
-    with open(args.output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(samples, f, indent=2)
 
 

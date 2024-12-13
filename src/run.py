@@ -1,23 +1,26 @@
-from synthetic_data.generate_synthetical_data_TrialBench import main
+from synthetic_data.generate_synthetical_data_TrialBench import generate_synthetic_data
+from synthetic_data.apply_sentence_embedding_reranking import rerank
 import argparse
 
-# all_trial_metadata
-# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/all_trial_metadata --database all_trial_metadata --db_path all_trial_metadata.db
-# gcmd
-# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/gcmd --database gcmd --db_path gcmd.db
-# combined
-# python3 src/run.py --data_path data/TrialBench --output_folder data/TrialBench/generative/generated/combined --database combined --db_path combined.db
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument('--data_path', type=str, default='data/TrialBench')
-    arg_parser.add_argument('--output_folder', type=str, default='data/TrialBench/generative/generated')
     arg_parser.add_argument('--number_of_choices', type=int, default=8)
-    arg_parser.add_argument('--base_number_of_samples_per_query_type', type=int, default=50, help='The base number of samples per query type. '
-                                                                                                 'This number, multiplied with the query type multiplier (see "common_query_types.py") '
-                                                                                                 'is the total number of samples that will be generated for each query type.')
-
-    arg_parser.add_argument('--database', type=str, default='all_trial_metadata')
-    arg_parser.add_argument('--db_path', type=str,default='all_trial_metadata.db')
-
+    arg_parser.add_argument('--database', type=str)
     args = arg_parser.parse_args()
-    main(args)
+
+    if args.database == "all_trial_metadata":
+        generate_synthetic_data(args.database, "data/TrialBench", "all_trial_metadata.db", args.number_of_choices)
+        rerank(args.database, "data/TrialBench/generative/generated/all_trial_metadata", "data/TrialBench/generative/all_trial_metadata_synthetic.json")
+    elif args.database == "gcmd":
+        generate_synthetic_data(args.database, "data/TrialBench", "gcmd.db", args.number_of_choices)
+        rerank(args.database, "data/TrialBench/generative/generated/gcmd", "data/TrialBench/generative/gcmd_synthetic.json")
+    elif args.database == "combined":
+        generate_synthetic_data(args.database, "data/TrialBench", "combined.db", args.number_of_choices)
+        rerank(args.database, "data/TrialBench/generative/generated/combined", "data/TrialBench/generative/combined.json")
+    else:
+        generate_synthetic_data("all_trial_metadata", "data/TrialBench", "all_trial_metadata.db", args.number_of_choices)
+        generate_synthetic_data("gcmd", "data/TrialBench", "gcmd.db", args.number_of_choices)
+        generate_synthetic_data("combined", "data/TrialBench", "combined.db", args.number_of_choices)
+        rerank(args.database, "data/TrialBench/generative/generated/all_trial_metadata", "data/TrialBench/generative/all_trial_metadata_synthetic.json")
+        rerank(args.database, "data/TrialBench/generative/generated/gcmd", "data/TrialBench/generative/gcmd_synthetic.json")
+        rerank(args.database, "data/TrialBench/generative/generated/combined", "data/TrialBench/generative/combined.json")
