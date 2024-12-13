@@ -72,43 +72,44 @@ Re-ranked choices:
     new_file.write_text(new_file_content)
 
 
-def rerank(db_id, input_data_path, output_file):
+def rerank(db_id, input_data_path, output_file, models):
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
     samples = []
+    for model_name, _ in models.items():
+        path = input_data_path + "/" + model_name
+        for idx, path in enumerate(Path(input_data_path).glob('*.txt')):
+            choices, original_sql_query, original_file_content = read_generative_choices(path)
 
-    for idx, path in enumerate(Path(input_data_path).glob('*.txt')):
-        choices, original_sql_query, original_file_content = read_generative_choices(path)
+            choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
 
-        choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
+            print_reranked(path, original_file_content, choice_reranked)
 
-        print_reranked(path, original_file_content, choice_reranked)
+            print(f'{idx}: {original_sql_query}')
+            print(choices)
+            print(choice_reranked)
+            print()
+            print()
 
-        print(f'{idx}: {original_sql_query}')
-        print(choices)
-        print(choice_reranked)
-        print()
-        print()
+            # we wanna keep both, the first and the second choice after re-ranking
+            samples.append({
+                'db_id': db_id,
+                'id': f'{idx}_1',
+                'user': "gpt-3",
+                'question': choice_reranked[0][0],
+                'query': original_sql_query
+            })
 
-        # we wanna keep both, the first and the second choice after re-ranking
-        samples.append({
-            'db_id': db_id,
-            'id': f'{idx}_1',
-            'user': "gpt-3",
-            'question': choice_reranked[0][0],
-            'query': original_sql_query
-        })
+            samples.append({
+                'db_id': db_id,
+                'id': f'{idx}_2',
+                'user': "gpt-3",
+                'question': choice_reranked[1][0],
+                'query': original_sql_query
+            })
 
-        samples.append({
-            'db_id': db_id,
-            'id': f'{idx}_2',
-            'user': "gpt-3",
-            'question': choice_reranked[1][0],
-            'query': original_sql_query
-        })
-
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(samples, f, indent=2)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(samples, f, indent=2)
 
 
 if __name__ == '__main__':

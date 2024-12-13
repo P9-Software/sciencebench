@@ -14,19 +14,15 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 TASK = "text-generation"
 MAX_NEW_TOKENS = 500
-DEVICE = "cuda"
-MODELS = {
-    "granite-instruct-3b": "ibm-granite/granite-3.0-8b-instruct",
-    "granite-code-34b": "ibm-granite/granite-34b-code-instruct-8k",
-    "llama-70b": "meta-llama/Meta-Llama-3-70B-Instruct",
-}
+DEVICE = "auto"
+
 
 """
 Synthetic data generator by using Ursin's templates
 """
-def generate_synthetic_data(database, data_path, db_path, number_of_choices):
+def generate_synthetic_data(database, data_path, db_path, number_of_choices, models):
     queries = get_all_query_samples(database, data_path, db_path)
-    for model_name, model_path in MODELS.items():
+    for model_name, model_path in models.items():
         print(model_name)
         model, tokenizer = setup_model(model_path)
         for query in tqdm(queries):
@@ -37,12 +33,12 @@ def generate_synthetic_data(database, data_path, db_path, number_of_choices):
             prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + query["sampled_query_replaced"] + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
             
             response = ask_model(model, tokenizer, prompt)
-            save_answer(response, model_name, query, prompt)
+            save_answer(response, model_name, query, prompt, database)
             
-def save_answer(response, model_name, query, prompt):
+def save_answer(response, model_name, query, prompt, database):
     # Get answers from response
     answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
-    output_path = Path("data/TrialBench/generative/generated") / model_name / f'{query["idx"]}_{query["round_idx"]}.txt'
+    output_path = Path("data/TrialBench/generative/generated") / database / model_name / f'{query["idx"]}_{query["round_idx"]}.txt'
     os.makedirs(output_path.parent, exist_ok=True)
     with open(output_path, 'w') as f:
         f.write(prompt)
