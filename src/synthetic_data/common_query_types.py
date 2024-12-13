@@ -93,7 +93,10 @@ def all_trial_metadata_query_types():
         'Root1(3) Root(5) Sel(0) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0)': 1,    # SELECT column1, column2 FROM table1;
         'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0)': 1, # SELECT column1 FROM table1 WHERE column1 LIKE '%substring%';
         'Root1(3) Root(3) Sel(1) N(0) A(3) Op(0) C(0) T(0) C(0) T(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0)': 1, # SELECT COUNT(DISTINCT column1) FROM table1 WHERE column1 LIKE '%substring%';
-        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(1)': 1 # SELECT column1 FROM table1 WHERE column1 LIKE '%substring%' AND column2 = 'some_value';
+        'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(0) T(0) C(0) T(0) Filter(0) Filter(9) A(0) Op(0) C(0) T(0) C(0) T(0) V(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(1)': 1, # SELECT column1 FROM table1 WHERE column1 LIKE '%substring%' AND column2 = 'some_value';
+        'Root1(3) Root(1) Sel(1) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) Filter(0) Filter(9) A(6) Op(0) C(2) T(0) C(2) T(0) V(0) Filter(9) A(0) Op(0) C(3) T(0) C(3) T(0) V(1) Order(1) A(0) Op(0) C(0) T(0) C(0) T(0)': 1,
+        'Root1(3) Root(1) Sel(1) N(1) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) Filter(0) Filter(2) A(6) Op(0) C(2) T(0) C(2) T(0) V(0) Filter(9) A(0) Op(0) C(3) T(0) C(3) T(0) V(1) Order(1) A(0) Op(0) C(0) T(0) C(0) T(0)': 1,
+        'Root1(3) Root(1) Sel(1) N(2) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(2) T(0) C(2) T(0) Filter(9) A(6) Op(0) C(2) T(0) C(2) T(0) V(0) Order(1) A(0) Op(0) C(0) T(0) C(0) T(0)': 1
     }
 
 def gcmd_query_types():
@@ -102,4 +105,9 @@ def gcmd_query_types():
         'Root1(3) Root(3) Sel(0) N(0) A(1) Op(0) C(0) T(0) C(0) T(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(0)': 1, # SELECT MAX(column1) FROM table1 WHERE column2 = 'some_value';
         'Root1(3) Root(3) Sel(0) N(0) A(0) Op(0) C(-1) T(0) C(-1) T(0) Filter(0) Filter(9) A(6) Op(0) C(0) T(0) C(0) T(0) V(0) Filter(0) Filter(2) A(0) Op(0) C(1) T(0) C(1) T(0) V(1) Filter(2) A(0) Op(0) C(2) T(0) C(2) T(0) V(2)': 1, # SELECT * from table1 where UPPER(column1) LIKE 'string1' and column2 = "string2" and column3 = "string3";
         'Root1(3) Root(3) Sel(0) N(6) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(2) T(0) C(2) T(0) A(0) Op(0) C(1) T(0) C(1) T(0) A(0) Op(0) C(2) T(0) C(2) T(0) A(0) Op(0) C(3) T(0) C(3) T(0) A(0) Op(0) C(4) T(0) C(4) T(0) Filter(0) Filter(2) A(0) Op(0) C(5) T(0) C(5) T(0) V(0) Filter(0) Filter(2) A(0) Op(0) C(5) T(0) C(5) T(0) V(0) Filter(0) Filter(9) A(6) Op(0) C(2) T(0) C(2) T(0) V(1) Filter(3) A(0) Op(0) C(1) T(0) C(1) T(0) V(2)': 1
+    }
+
+def combined_query_types():
+    return {
+        'Root1(3) Root(3) Sel(1) N(3) A(0) Op(0) C(0) T(0) C(0) T(0) A(0) Op(0) C(1) T(1) C(1) T(1) A(0) Op(0) C(2) T(1) C(2) T(1) A(0) Op(0) C(3) T(1) C(3) T(1) Filter(9) A(0) Op(0) C(5) T(0) C(5) T(0) V(0)': 1
     }
