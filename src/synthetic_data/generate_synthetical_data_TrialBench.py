@@ -7,7 +7,7 @@ import sqlite3
 from types import SimpleNamespace
 from tqdm import tqdm
 
-from synthetic_data.common_query_types import all_trial_metadata_query_types, gcmd_query_types
+from synthetic_data.common_query_types import all_trial_metadata_query_types, gcmd_query_types, combined_query_types
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -67,8 +67,14 @@ def get_all_query_samples(database, data_path, db_path):
                                 db_options="",
                                 path=db_path)
     query_cache = []
-    query_types = all_trial_metadata_query_types() if database == "all_trial_metadata" else gcmd_query_types()
-    result = []
+    
+    match database:
+        case "all_trial_metadata":
+            query_types = all_trial_metadata_query_types()
+        case "gcmd":
+            query_types = gcmd_query_types()
+        case "combined":
+            query_types = combined_query_types()
 
     for idx, (query_type, multiplier) in enumerate(query_types.items()):
 
