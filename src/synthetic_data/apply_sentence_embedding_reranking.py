@@ -92,26 +92,30 @@ def rerank(db_id, input_data_path, output_file, models):
             print()
             print()
 
-            # Save the scores
-            model_scores.append(choice_reranked[0][1])
-            model_scores.append(choice_reranked[1][1])
-
+            # Save the scores and the chosen questions
             # we wanna keep both, the first and the second choice after re-ranking
-            samples.append({
+            # TODO (Sometimes there are less than two choices???) Probably too low MAX TOKENS in inference
+            if len(choice_reranked) > 0:
+                model_scores.append(choice_reranked[0][1])
+                samples.append({
                 'db_id': db_id,
                 'id': f'{idx}_1',
                 'user': "gpt-3",
                 'question': choice_reranked[0][0],
                 'query': original_sql_query
             })
-
-            samples.append({
+            if len(choice_reranked) > 1:
+                model_scores.append(choice_reranked[1][1])
+                samples.append({
                 'db_id': db_id,
                 'id': f'{idx}_2',
                 'user': "gpt-3",
                 'question': choice_reranked[1][0],
                 'query': original_sql_query
             })
+
+            
+            
         model_average_score = sum(model_scores) / len(model_scores)
         with open(output_file + model_name + "_score.txt", 'w', encoding='utf-8') as f:
             f.write("Average score:" + str(model_average_score) + "\n\n")
