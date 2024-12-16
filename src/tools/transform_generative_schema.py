@@ -102,13 +102,15 @@ def transform(original_schema_path: Path, new_schema_path: Path, tables_of_inter
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--db_path', default = 'oncomx', type=str)
-    
+    parser.add_argument('--db_id')
     # parser.add_argument('--original_schema', default='data/cordis/original/tables.json', type=str)
     # parser.add_argument('--new_schema', default='data/cordis/generative/generative_schema.json', type=str)
 
     args = parser.parse_args()
-    original_schema_path = Path('.').joinpath('data', args.db_path, 'original', 'tables.json')
-    new_schema_path = Path('.').joinpath('data', args.db_path, 'generative', 'generative_schema.json')
+    original_schema_file_name = args.db_id + '_tables.json'
+    new_schema_file_name =  args.db_id + '_generative_schema.json'
+    original_schema_path = Path('.').joinpath('data', args.db_path, 'original', original_schema_file_name)
+    new_schema_path = Path('.').joinpath('data', args.db_path, 'generative', new_schema_file_name)
     Path('.').joinpath('data', args.db_path, 'generative').mkdir(parents=True, exist_ok=True)
 
     # we don't consider all tables but just the one of interest. This normally does not include simple connection tables.
