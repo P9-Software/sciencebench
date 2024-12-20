@@ -11,28 +11,37 @@ def read_generative_choices(path):
     with open(path) as f:
         lines = f.readlines()
 
+    # Extract the original query
     try:
-        original_query = lines[lines.index("Original Query:\n") + 1]
-    except:
+        original_query = lines[lines.index("Original Query:\n") + 1].strip()
+    except (ValueError, IndexError):
         original_query = '---'
 
-    generative_choices = []
-    index = 1
-    while True:
-        choice_line = filter(lambda l: l.startswith(f'{index}.'), lines)
-        try:
-            # Extract the matching line and process it
-            choice = next(choice_line)[len(f'{index}.'):].strip()
-            # Ensure non-empty lines and capitalize the first letter
-            if len(choice) > 0:
-                _choice = choice[0].upper() + choice[1:]
-                if _choice not in generative_choices:
-                    generative_choices.append(_choice)
-            index += 1  # Increment the index for the next line
-        except StopIteration:
-            # Exit the loop when no more lines match
+    start_index = None
+    for i, line in enumerate(lines):
+        if "choices:" in line:
+            start_index = i + 1
             break
-    return generative_choices, original_query.strip(), lines
+
+    if start_index is None:
+        print("choices: not found; return defaults")
+        return [], original_query, lines
+
+    # Extract generative choices from lines after "choices:"
+    generative_choices = []
+    for line in lines[start_index:]:
+        line = line.strip()
+        # Check if the line starts with a number and a dot
+        if line and line[0].isdigit() and line[1] == '.':
+            # Extract and clean the choice text
+            choice = line[2:].strip()
+            if choice:
+                # Capitalize the first letter and avoid duplicates
+                choice = choice[0].upper() + choice[1:]
+                if choice not in generative_choices:
+                    generative_choices.append(choice)
+
+    return generative_choices, original_query, lines
 
 
 def rank_by_aggregated_pairwise_similarity(choices: List[str], model: SentenceTransformer):
@@ -63,43 +72,58 @@ Re-ranked choices:
     new_file.write_text(new_file_content)
 
 
-def main(args):
+def rerank(db_id, input_data_path, output_file, models):
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
-    samples = []
+    for model_name, _ in models.items():
+        samples = []
+        model_scores = []
+        path = input_data_path + "/" + model_name
+        for idx, path in enumerate(Path(path).glob('*.txt')):
+            choices, original_sql_query, original_file_content = read_generative_choices(path)
 
-    for idx, path in enumerate(Path(args.input_data_path).glob('*.txt')):
-        choices, original_sql_query, original_file_content = read_generative_choices(path)
+            choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
 
-        choice_reranked = rank_by_aggregated_pairwise_similarity(choices, model)
+            print_reranked(path, original_file_content, choice_reranked)
 
-        print_reranked(path, original_file_content, choice_reranked)
+            print(f'{idx}: {original_sql_query}')
+            print(choices)
+            print(choice_reranked)
+            print()
+            print()
 
-        print(f'{idx}: {original_sql_query}')
-        print(choices)
-        print(choice_reranked)
-        print()
-        print()
+            # Save the scores and the chosen questions
+            # we wanna keep both, the first and the second choice after re-ranking
+            # TODO (Sometimes there are less than two choices???) Probably too low MAX TOKENS in inference
+            if len(choice_reranked) > 0:
+                model_scores.append(choice_reranked[0][1])
+                samples.append({
+                'db_id': db_id,
+                'id': f'{idx}_1',
+                'user': "gpt-3",
+                'question': choice_reranked[0][0],
+                'query': original_sql_query
+            })
+            if len(choice_reranked) > 1:
+                model_scores.append(choice_reranked[1][1])
+                samples.append({
+                'db_id': db_id,
+                'id': f'{idx}_2',
+                'user': "gpt-3",
+                'question': choice_reranked[1][0],
+                'query': original_sql_query
+            })
 
-        # we wanna keep both, the first and the second choice after re-ranking
-        samples.append({
-            'db_id': args.db_id,
-            'id': f'{idx}_1',
-            'user': "gpt-3",
-            'question': choice_reranked[0][0],
-            'query': original_sql_query
-        })
+            
+            
+        model_average_score = sum(model_scores) / len(model_scores)
+        with open(output_file + model_name + "_score.txt", 'w', encoding='utf-8') as f:
+            f.write("Average score:" + str(model_average_score) + "\n\n")
+            for score in model_scores:
+                f.write(f"{score}\n")
+        with open(output_file + "_" + model_name + ".json", 'w', encoding='utf-8') as f:
+            json.dump(samples, f, indent=2)
 
-        samples.append({
-            'db_id': args.db_id,
-            'id': f'{idx}_2',
-            'user': "gpt-3",
-            'question': choice_reranked[1][0],
-            'query': original_sql_query
-        })
-
-    with open(args.output_file, 'w', encoding='utf-8') as f:
-        json.dump(samples, f, indent=2)
 
 
 if __name__ == '__main__':

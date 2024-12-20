@@ -5,45 +5,99 @@ import os
 from pathlib import Path
 import sqlite3
 from types import SimpleNamespace
-
+import torch
+from tqdm import tqdm
 
 from synthetic_data.common_query_types import all_trial_metadata_query_types, gcmd_query_types, combined_query_types
 from synthetic_data.sample_queries.sample_query import sample_query
 from tools.transform_generative_schema import GenerativeSchema
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import gc
 
 TASK = "text-generation"
 MAX_NEW_TOKENS = 500
+DEVICE = "auto"
+
 
 """
 Synthetic data generator by using Ursin's templates
 """
-def main(args):
-    device = "cuda"
-    model_path = "ibm-granite/granite-3.0-8b-instruct"
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    # drop device_map if running on CPU
-    model = AutoModelForCausalLM.from_pretrained(model_path, device_map=device)
-    model.eval()
-    # change input text as desired
-    print(args.database)
-    table_file = args.database + '_tables.json'
-    with open(Path(args.data_path) / 'original' / table_file) as f:
+def generate_synthetic_data(database, data_path, db_path, number_of_choices, models):
+    queries = get_all_query_samples(database, data_path, db_path)
+    for model_name, model_path in models.items():
+        print(model_name)
+        model, tokenizer = setup_model(model_path)
+        for query in tqdm(queries):
+            table_name = find_table_name_in_sample(query["sampled_query"])
+
+            table_string = table_name_lookup(db_path, table_name)
+            prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + query["sampled_query_replaced"] + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
+            
+            response = ask_model(model, tokenizer, prompt)
+            save_answer(response, model_name, query, prompt, database)
+        
+        # Get that damn model off my gpus
+        del model
+        del tokenizer
+        gc.collect()
+        torch.cuda.empty_cache()
+            
+def save_answer(response, model_name, query, prompt, database):
+    # Get answers from response
+    answers = parse_response(response, model_name)
+    output_path = Path("data/TrialBench/generative/generated") / database / model_name / f'{query["idx"]}_{query["round_idx"]}.txt'
+    os.makedirs(output_path.parent, exist_ok=True)
+    with open(output_path, 'w') as f:
+        f.write(prompt)
+        f.write('\nOriginal Query:\n')
+        f.write(query["sampled_query"])
+        f.write(f'\n{model_name} choices:\n')
+        f.write('\n'.join(answers))
+
+def parse_response(response, model_name):
+    if model_name == "granite-instruct-3b":
+        answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
+    if model_name == "granite-code-34b":
+        text = response[0]
+        answer_start = text.find("Answer:")
+        answer_text = text[answer_start + len("Answer:"):]
+        end_marker = "<|endoftext|>"
+        answer_text = answer_text.split(end_marker)[0]
+        lines = answer_text.strip().split("\n")
+        answers = [line.strip() for line in lines if line.strip().startswith(tuple(str(i) + "." for i in range(1, 10)))]
+    if model_name == "llama-70b":
+        header_split = response[0].split("<|end_header_id|>")
+        content = header_split[-1].strip()
+        content = content.split("<|eot_id|>")[0].strip()
+        # Exclude the "Here are the answers" part
+        if "Here are" in content:
+            content = content.split("Here are", 1)[-1].strip()
+
+        # Extract the answers into a list, starting with numbers and a dot
+        lines = content.split("\n")
+        answers = [line.strip() for line in lines if line.strip() and line.strip()[0].isdigit() and line.strip()[1] == "."]
+
+    return answers
+
+def get_all_query_samples(database, data_path, db_path):
+    table_file = database + '_tables.json'
+    with open(Path(data_path) / 'original' / table_file) as f:
         schemas = json.load(f)
         original_schema = schemas[0]  # we assume there is only one db-schema in this file
-    generated_schema_file = args.database + '_generative_schema.json'
-    generative_schema = GenerativeSchema(Path(args.data_path) / 'generative' / generated_schema_file)
+    generated_schema_file = database + '_generative_schema.json'
+    generative_schema = GenerativeSchema(Path(data_path) / 'generative' / generated_schema_file)
 
-    db_config = SimpleNamespace(database=args.database,
+    db_config = SimpleNamespace(database=database,
                                 db_user="",
                                 db_password="",
                                 db_host="",
                                 db_port="",
                                 db_options="",
-                                path=args.db_path)
-
+                                path=db_path)
     query_cache = []
-    match args.database:
+    result = []
+    
+    match database:
         case "all_trial_metadata":
             query_types = all_trial_metadata_query_types()
         case "gcmd":
@@ -58,7 +112,7 @@ def main(args):
 
         # we might have to repeat the sampling process multiple times to get enough samples (exceptions due to unfavorable samplings),
         # but we still don't want to be caught in an infinite loop.
-        while round_idx < (args.base_number_of_samples_per_query_type * multiplier) and fail_to_sample < 50:
+        while round_idx < (50 * multiplier) and fail_to_sample < 50:
 
             try:
                 sampled_query, sampled_query_replaced = sample_query(query_type, original_schema, generative_schema, db_config)
@@ -67,41 +121,40 @@ def main(args):
                     raise ValueError('Query already sampled')
                 else:
                     query_cache.append(sampled_query)
-
-                print(f'{query_type}                        {sampled_query}')
-
-                table_name = find_table_name_in_sample(sampled_query)
-                table_string = table_name_lookup(args, table_name)
-
-                prompt = "As an experienced and professional clinical trial data analyst, your task is to create " + str(args.number_of_choices) + " natural language questions that could be answered by the query given under [QUERY]. Do not use any of the table or column names in the sql query to create the questions. List the questions like this: " + '\n' + "1. This is the first question" + '\n' + "2. This is the second question" + '\n' + "3. This is the third question" + '\n\n' + "[QUERY]" + '\n' + sampled_query_replaced + '\n\n' + "[ABBREVIATIONS] This is a table of all the abbreviations you might need, use this when you see a table or column name to understand the word(s) you will need to use" + '\n\n' + table_string
-                chat = [
-                    {"role": "user", "content": prompt}
-                ]
-                chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
-                # tokenize the text
-                input_tokens = tokenizer(chat, return_tensors="pt").to(device)
-                # generate output tokens
-                output = model.generate(**input_tokens, 
-                                        max_new_tokens=MAX_NEW_TOKENS)
-                # decode output tokens into text
-                response = tokenizer.batch_decode(output)
-                
-                # Get answers from response
-                answers = response[0].split("<|end_of_role|>")[2].replace("<|end_of_text|>", "").split("\n")
-                output_path = Path(args.output_folder) / f'{idx}_{round_idx}.txt'
-                os.makedirs(output_path.parent, exist_ok=True)
-                with open(output_path, 'w') as f:
-                    f.write(prompt)
-                    f.write('\nOriginal Query:\n')
-                    f.write(sampled_query)
-                    f.write('\nGranite choices:\n')
-                    f.write('\n'.join(answers))
-
-                round_idx += 1
+                    result.append({
+                        'idx': idx,
+                        'round_idx': round_idx,
+                        'sampled_query': sampled_query,
+                        'sampled_query_replaced': sampled_query_replaced
+                    })
+                    round_idx += 1
 
             except ValueError as e:
                 print(f'Exception:{e}')
                 fail_to_sample += 1
+    return result
+
+def ask_model(model, tokenizer, prompt):
+    chat = [
+        {"role": "user", "content": prompt}
+    ]
+    chat = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+    # tokenize the text
+    input_tokens = tokenizer(chat, return_tensors="pt")    
+    # Move input tokens to the same device as the model
+    input_tokens = {key: value.to(model.device) for key, value in input_tokens.items()}
+    # generate output tokens
+    output = model.generate(**input_tokens, 
+                            max_new_tokens=MAX_NEW_TOKENS,
+                            pad_token_id=tokenizer.eos_token_id)
+    # decode output tokens into text
+    return tokenizer.batch_decode(output)
+
+def setup_model(model_path):
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    model = AutoModelForCausalLM.from_pretrained(model_path, device_map=DEVICE)
+    model.eval()
+    return model, tokenizer
 
 def find_table_name_in_sample(sample):
     parts = sample.split()
@@ -114,8 +167,8 @@ def find_table_name_in_sample(sample):
         print("Required keywords 'FROM' or 'AS' not found in the query.")
     return table_name
 
-def table_name_lookup(args, table):
-    connection = sqlite3.connect(args.db_path)
+def table_name_lookup(db_path, table):
+    connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     schema_with_descriptions = defaultdict(list)
     result = cursor.execute("SELECT * FROM column_label_lookup WHERE Table_name='" + table + "';").fetchall()
@@ -136,7 +189,6 @@ def table_name_lookup(args, table):
                 table_string += f"{table}\t{column}\t{column_label}\n"
     return table_string
 
-
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--data_path', type=str, default='data/TrialBench')
@@ -150,4 +202,5 @@ if __name__ == '__main__':
     arg_parser.add_argument('--db_path', type=str,default='all_trial_metadata.db')
 
     args = arg_parser.parse_args()
-    main(args)
+
+    generate_synthetic_data(args)
